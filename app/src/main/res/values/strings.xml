@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">JetPack Pro 1</string>
+    <string name="tvShows">Tv Shows</string>
+    <string name="movies">Movies</string>
+    <string name="title_film">Title Film</string>
+    <string name="time">release</string>
+    <string name="overview">Overview</string>
+    <string name="image_rating">Image Rating</string>
+    <string name="rating">Rating</string>
+    <string name="image_lang">Image Language</string>
+    <string name="language">Language</string>
+    <string name="image_poster">Image Poster</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="icon_star">Star Image</string>
+    <string name="image_white">Line Image</string>
+    <string name="lorem">-</string>
+</resources>
