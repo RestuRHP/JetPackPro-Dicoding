@@ -10,6 +10,7 @@ import net.learn.submission_1.R
 import net.learn.submission_1.ui.movies.MovieFragment
 import net.learn.submission_1.ui.tv.TvShowFragment
 
+
 class MainActivity : AppCompatActivity() {
 
     var content: Fragment = MovieFragment()

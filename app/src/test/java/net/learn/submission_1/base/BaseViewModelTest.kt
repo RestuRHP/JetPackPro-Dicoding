@@ -10,8 +10,6 @@ class BaseViewModelTest {
 
     private lateinit var viewModel: BaseViewModel
     private val dummyMovie = Dummy.generateDummnyMovies()[0]
-    private var idItem = 0
-
 
     @Before
     fun setUp() {
