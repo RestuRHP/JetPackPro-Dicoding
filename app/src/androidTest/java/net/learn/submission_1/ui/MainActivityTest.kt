@@ -3,6 +3,7 @@ package net.learn.submission_1.ui
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -75,6 +76,7 @@ class MainActivityTest {
         onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_overview)).check(matches(withText(dummyMovie[0].overview)))
         onView(withId(R.id.backdrop_image)).check(matches(isDisplayed()))
+        onView(isRoot()).perform(ViewActions.pressBack())
     }
 
 }

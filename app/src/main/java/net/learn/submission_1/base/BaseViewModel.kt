@@ -22,7 +22,6 @@ class BaseViewModel : ViewModel() {
         }
         return entity
     }
-
     fun setId(id: String?) {
         this.id = id
     }
