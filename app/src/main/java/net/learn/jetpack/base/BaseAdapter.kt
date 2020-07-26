@@ -1,4 +1,4 @@
-package net.learn.submission_1.base
+package net.learn.jetpack.base
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_movie.view.*
-import net.learn.submission_1.BuildConfig
-import net.learn.submission_1.R
-import net.learn.submission_1.data.MovieEntity
-import net.learn.submission_1.ui.detail.DetailActivity
+import net.learn.jetpack.BuildConfig
+import net.learn.jetpack.R
+import net.learn.jetpack.data.MovieEntity
+import net.learn.jetpack.ui.detail.DetailActivity
 
 
 class BaseAdapter : RecyclerView.Adapter<BaseAdapter.Holder>() {

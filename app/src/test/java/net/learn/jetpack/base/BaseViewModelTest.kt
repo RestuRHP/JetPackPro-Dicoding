@@ -1,6 +1,6 @@
-package net.learn.submission_1.base
+package net.learn.jetpack.base
 
-import net.learn.submission_1.utils.Dummy
+import net.learn.jetpack.utils.Dummy
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before

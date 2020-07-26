@@ -1,6 +1,7 @@
-package net.learn.submission_1.ui.movies
+package net.learn.jetpack.ui.movies
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.display_fragment.*
-import net.learn.submission_1.R
-import net.learn.submission_1.base.BaseAdapter
-import net.learn.submission_1.base.BaseViewModel
+import net.learn.jetpack.R
+import net.learn.jetpack.base.BaseAdapter
+import net.learn.jetpack.base.BaseViewModel
 
 class MovieFragment : Fragment() {
 
@@ -29,6 +30,8 @@ class MovieFragment : Fragment() {
             ViewModelProvider.NewInstanceFactory()
         )[BaseViewModel::class.java]
         val items = viewModel.getMovies()
+        Log.d("Test Item", " : ${items.get(1).title}")
+        Log.d("Test Item", " : Barhasil")
 
         val adapter = BaseAdapter()
         adapter.setItem(items)

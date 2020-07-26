@@ -1,6 +1,6 @@
-package net.learn.submission_1.utils
+package net.learn.jetpack.utils
 
-import net.learn.submission_1.data.MovieEntity
+import net.learn.jetpack.data.MovieEntity
 
 object Dummy {
 

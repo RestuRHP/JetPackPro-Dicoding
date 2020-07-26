@@ -1,4 +1,4 @@
-package net.learn.submission_1.ui.detail
+package net.learn.jetpack.ui.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_detail.*
-import net.learn.submission_1.BuildConfig
-import net.learn.submission_1.R
-import net.learn.submission_1.base.BaseViewModel
-import net.learn.submission_1.data.MovieEntity
+import net.learn.jetpack.BuildConfig
+import net.learn.jetpack.R
+import net.learn.jetpack.base.BaseViewModel
+import net.learn.jetpack.data.MovieEntity
 
 
 class DetailActivity : AppCompatActivity() {

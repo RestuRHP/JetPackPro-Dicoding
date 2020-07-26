@@ -1,4 +1,4 @@
-package net.learn.submission_1.data
+package net.learn.jetpack.data
 
 data class MovieEntity(
     var id: String,

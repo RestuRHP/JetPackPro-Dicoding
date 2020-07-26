@@ -1,4 +1,4 @@
-package net.learn.submission_1.ui
+package net.learn.jetpack.ui
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import net.learn.submission_1.R
-import net.learn.submission_1.ui.movies.MovieFragment
-import net.learn.submission_1.ui.tv.TvShowFragment
+import net.learn.jetpack.R
+import net.learn.jetpack.ui.movies.MovieFragment
+import net.learn.jetpack.ui.tv.TvShowFragment
 
 
 class MainActivity : AppCompatActivity() {

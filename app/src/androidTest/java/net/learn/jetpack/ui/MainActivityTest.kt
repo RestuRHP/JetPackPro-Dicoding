@@ -1,4 +1,4 @@
-package net.learn.submission_1.ui
+package net.learn.jetpack.ui
 
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -9,8 +9,8 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
-import net.learn.submission_1.R
-import net.learn.submission_1.utils.Dummy
+import net.learn.jetpack.R
+import net.learn.jetpack.utils.Dummy
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.Rule

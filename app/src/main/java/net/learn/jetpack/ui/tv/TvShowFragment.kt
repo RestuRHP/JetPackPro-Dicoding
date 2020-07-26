@@ -1,4 +1,4 @@
-package net.learn.submission_1.ui.tv
+package net.learn.jetpack.ui.tv
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.display_fragment.*
-import net.learn.submission_1.R
-import net.learn.submission_1.base.BaseAdapter
-import net.learn.submission_1.base.BaseViewModel
+import net.learn.jetpack.R
+import net.learn.jetpack.base.BaseAdapter
+import net.learn.jetpack.base.BaseViewModel
 
 class TvShowFragment : Fragment() {
     override fun onCreateView(
