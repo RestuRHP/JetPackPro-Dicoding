@@ -27,7 +27,7 @@ class DetailActivity : AppCompatActivity() {
             this,
             ViewModelProvider.NewInstanceFactory()
         )[BaseViewModel::class.java]
-        val entityId: String? = intent.getStringExtra(EXTRA_ID)
+        val entityId = intent.getIntExtra(EXTRA_ID, 0)
         viewModel.setId(entityId)
         val entity = viewModel.getDetails()
         showDetail(entity)

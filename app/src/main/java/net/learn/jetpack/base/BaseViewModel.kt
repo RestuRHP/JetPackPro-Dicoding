@@ -8,7 +8,7 @@ import net.learn.jetpack.utils.Dummy
 class BaseViewModel : ViewModel() {
 
     private var entity: MovieEntity? = null
-    private var id: String? = null
+    private var id: Int? = 0
 
     fun getDetails(): MovieEntity? {
         val entityList: MutableList<MovieEntity> = ArrayList()
@@ -22,7 +22,8 @@ class BaseViewModel : ViewModel() {
         }
         return entity
     }
-    fun setId(id: String?) {
+
+    fun setId(id: Int?) {
         this.id = id
     }
 
