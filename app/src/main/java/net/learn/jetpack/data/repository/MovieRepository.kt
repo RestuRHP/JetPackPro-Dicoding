@@ -7,12 +7,12 @@ class MovieRepository private constructor() : BaseRepository<MovieDataStore>() {
     suspend fun getSets(): MutableList<Movie>? {
         val cache = localStore?.getSets()
         if (cache != null) return cache
-        val respose = remoteStore?.getSets()
-        localStore?.addAll(respose)
-        return respose
+        val response = remoteStore?.getSets()
+        localStore?.addAll(response)
+        return response
     }
 
     companion object {
-        val instance by lazy { MovieRepository }
+        val instance by lazy { MovieRepository() }
     }
 }

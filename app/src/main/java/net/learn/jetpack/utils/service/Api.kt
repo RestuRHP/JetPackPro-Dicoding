@@ -12,7 +12,7 @@ interface Api {
     suspend fun getListItem(
         @Path("type") type: String,
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,
-        @Query("language") language: String = "en-US",
-        @Query("page") page: Int
+        @Query("language") language: String = "en-US"
+//        @Query("page") page: Int
     ): Response<MovieResponse>
 }

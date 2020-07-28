@@ -3,6 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+androidExtensions {
+    experimental = true
+}
+
 android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -47,16 +51,18 @@ dependencies {
 
     // Kotlin components
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 
     // Material design
-    implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation "com.google.android.material:material:$materialVersion"
 
     // Lifecycle components
-    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
-    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+//    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$archLifecycleVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -72,8 +78,13 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     implementation 'com.google.code.gson:gson:2.8.5'
 
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
+
     testImplementation 'junit:junit:4.13'
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    testImplementation 'org.mockito:mockito-core:2.23.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
