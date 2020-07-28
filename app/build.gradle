@@ -21,6 +21,9 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField 'String', 'API_KEY', "\"0bc4d12e12cd1880a3493cafe4cdb8e0\""
+        buildConfigField 'String', 'BASE_URL', "\"https://api.themoviedb.org/3/\""
+        buildConfigField 'String', 'SEARCH_URL', "\"https://api.themoviedb.org/3/search/\""
         buildConfigField 'String', 'POSTER_PATH', "\"https://image.tmdb.org/t/p/w185/\""
         buildConfigField 'String', 'BACKDROP_PATH', "\"https://image.tmdb.org/t/p/w500/\""
 
