@@ -29,7 +29,7 @@ class BaseRepositoryTest {
     }
 
     @Test
-    fun shouldNotGetPokemonsFromRemoteWhenLocalIsNotNull() {
+    fun shouldNotGetFromRemoteWhenLocalIsNotNull() {
         runBlocking {
             Mockito.`when`(localDataStore?.getSets()).thenReturn(movieSet)
             movieRepository?.getSets()
@@ -40,7 +40,7 @@ class BaseRepositoryTest {
     }
 
     @Test
-    fun shouldCallGetPokemonsFromRemoteAndSaveToLocalWhenLocalIsNull() {
+    fun shouldCallGetFromRemoteAndSaveToLocalWhenLocalIsNull() {
         runBlocking {
             Mockito.`when`(localDataStore?.getSets()).thenReturn(null)
             Mockito.`when`(remoteDataStore?.getSets()).thenReturn(movieSet)
