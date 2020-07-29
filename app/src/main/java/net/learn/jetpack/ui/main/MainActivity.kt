@@ -1,4 +1,4 @@
-package net.learn.jetpack.ui
+package net.learn.jetpack.ui.main
 
 import android.os.Bundle
 import android.view.MenuItem
