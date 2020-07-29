@@ -14,10 +14,10 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             app:contentScrim="@color/colorPrimary"
             app:expandedTitleMarginBottom="8dp"
             app:expandedTitleMarginStart="16dp"
-            android:background="@android:color/transparent"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <ImageView

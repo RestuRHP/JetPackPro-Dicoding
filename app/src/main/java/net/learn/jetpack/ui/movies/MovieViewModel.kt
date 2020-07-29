@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import net.learn.jetpack.data.repository.MovieRepository
+import net.learn.jetpack.repository.MovieRepository
 
 class MovieViewModel(private val movieSet: MovieRepository) : ViewModel() {
     private val mViewState = MutableLiveData<MovieViewState>().apply {

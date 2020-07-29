@@ -16,9 +16,9 @@ import net.learn.submission4mvvm.model.movies.Movie
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     private val movieSets = mutableListOf<Movie>()
 
-    fun updateData(newPokemonSets: MutableList<Movie>) {
+    fun updateData(sets: MutableList<Movie>) {
         movieSets.clear()
-        movieSets.addAll(newPokemonSets)
+        movieSets.addAll(sets)
         notifyDataSetChanged()
     }
 

@@ -1,4 +1,4 @@
-package net.learn.jetpack.data.repository
+package net.learn.jetpack.repository
 
 abstract class BaseRepository<DataStore> {
     protected var localStore: DataStore? = null

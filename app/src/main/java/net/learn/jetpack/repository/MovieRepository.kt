@@ -1,6 +1,6 @@
-package net.learn.jetpack.data.repository
+package net.learn.jetpack.repository
 
-import net.learn.jetpack.data.store.MovieDataStore
+import net.learn.jetpack.ui.movies.store.MovieDataStore
 import net.learn.submission4mvvm.model.movies.Movie
 
 class MovieRepository private constructor() : BaseRepository<MovieDataStore>() {
