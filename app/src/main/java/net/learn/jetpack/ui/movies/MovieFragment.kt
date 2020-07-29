@@ -10,17 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.display_fragment.*
 import net.learn.jetpack.R
-import net.learn.jetpack.base.MainAdapter
-import net.learn.jetpack.base.MainViewModel
-import net.learn.jetpack.base.MainViewState
-import net.learn.jetpack.base.MovieListFactory
 import net.learn.jetpack.data.repository.MovieRepository
 import net.learn.submission4mvvm.model.movies.Movie
 
 class MovieFragment : Fragment() {
 
-    private lateinit var vm: MainViewModel
-    private lateinit var adapter: MainAdapter
+    private lateinit var vm: MovieViewModel
+    private lateinit var adapter: MovieAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,40 +26,23 @@ class MovieFragment : Fragment() {
         return inflater.inflate(R.layout.display_fragment, container, false)
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-////        super.onViewCreated(view, savedInstanceState)
-////        val viewModel = ViewModelProvider(
-////            this,
-////            ViewModelProvider.NewInstanceFactory()
-////        )[BaseViewModel::class.java]
-////        val items = viewModel.getMovies()
-////        Log.d("Test Item", " : ${items.get(1).title}")
-////        Log.d("Test Item", " : Barhasil")
-////
-////        val adapter = BaseAdapter()
-////        adapter.setItem(items)
-////
-////        rv_movies.layoutManager = LinearLayoutManager(context)
-////        rv_movies.setHasFixedSize(true)
-////        rv_movies.adapter = adapter
-////    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = MainAdapter()
+        adapter = MovieAdapter()
         rv_movies.adapter = adapter
         rv_movies.setHasFixedSize(true)
         rv_movies.layoutManager = LinearLayoutManager(this.context)
 
-        val factory = MovieListFactory(MovieRepository.instance)
-        vm = ViewModelProvider(this, factory).get(MainViewModel::class.java).apply {
+        val factory =
+            MovieListFactory(MovieRepository.instance)
+        vm = ViewModelProvider(this, factory).get(MovieViewModel::class.java).apply {
             viewState.observe(viewLifecycleOwner, Observer(this@MovieFragment::handleState))
             swapRefresh.setOnRefreshListener { getSets() }
         }
     }
 
-    private fun handleState(viewState: MainViewState?) {
+    private fun handleState(viewState: MovieViewState?) {
         viewState?.let {
             toggleLoading(it.loading)
             it.data?.let { data -> showData(data) }

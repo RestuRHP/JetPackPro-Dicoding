@@ -17,6 +17,7 @@
             app:contentScrim="@color/colorPrimary"
             app:expandedTitleMarginBottom="8dp"
             app:expandedTitleMarginStart="16dp"
+            android:background="@android:color/transparent"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <ImageView

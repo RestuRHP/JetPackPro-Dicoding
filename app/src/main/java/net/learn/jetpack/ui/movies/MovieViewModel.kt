@@ -1,4 +1,4 @@
-package net.learn.jetpack.base
+package net.learn.jetpack.ui.movies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,11 +7,11 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import net.learn.jetpack.data.repository.MovieRepository
 
-class MainViewModel(private val movieSet: MovieRepository) : ViewModel() {
-    private val mViewState = MutableLiveData<MainViewState>().apply {
-        value = MainViewState(loading = true)
+class MovieViewModel(private val movieSet: MovieRepository) : ViewModel() {
+    private val mViewState = MutableLiveData<MovieViewState>().apply {
+        value = MovieViewState(loading = true)
     }
-    val viewState: LiveData<MainViewState>
+    val viewState: LiveData<MovieViewState>
         get() = mViewState
 
     init {

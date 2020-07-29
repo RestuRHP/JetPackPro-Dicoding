@@ -1,4 +1,4 @@
-package net.learn.jetpack.base
+package net.learn.jetpack.ui.movies
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import net.learn.jetpack.R
 import net.learn.jetpack.ui.detail.DetailActivity
 import net.learn.submission4mvvm.model.movies.Movie
 
-class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     private val movieSets = mutableListOf<Movie>()
 
     fun updateData(newPokemonSets: MutableList<Movie>) {
