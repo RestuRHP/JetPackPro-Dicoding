@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import net.learn.jetpack.BuildConfig
 import net.learn.jetpack.R
 import net.learn.jetpack.base.BaseViewModel
-import net.learn.jetpack.data.MovieEntity
+import net.learn.jetpack.utils.Dummy.MovieEntity
 
 
 class DetailActivity : AppCompatActivity() {

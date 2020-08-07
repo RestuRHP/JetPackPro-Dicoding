@@ -1,11 +1,11 @@
-package net.learn.jetpack.ui.tv.store
+package net.learn.jetpack.datastore.TvStore
 
 import net.learn.jetpack.model.tv.TvShow
 import net.learn.jetpack.utils.service.Api
 
 class TvRemoteStore(private val api: Api) : TvDataStore {
-    override suspend fun getSets(): MutableList<TvShow>? {
-        val response = api.getTv()
+    override suspend fun getSets(page: Int): MutableList<TvShow>? {
+        val response = api.getTv(page = page)
         if (response.isSuccessful)
             return response.body()?.results
 

@@ -15,12 +15,12 @@ class TvViewModel(private val tvSet: TvRepository) : ViewModel() {
         get() = mViewState
 
     init {
-        getSets()
+        getSets(1)
     }
 
-    fun getSets() = viewModelScope.launch {
+    fun getSets(page: Int) = viewModelScope.launch {
         try {
-            val data = tvSet.getSets()
+            val data = tvSet.getSets(page = page)
             mViewState.value = mViewState.value?.copy(loading = false, error = null, data = data)
         } catch (ex: Exception) {
             mViewState.value = mViewState.value?.copy(loading = false, error = ex, data = null)

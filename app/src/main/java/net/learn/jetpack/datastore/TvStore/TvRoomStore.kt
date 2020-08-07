@@ -1,10 +1,10 @@
-package net.learn.jetpack.ui.tv.store
+package net.learn.jetpack.datastore.TvStore
 
 import net.learn.jetpack.database.TvDao
 import net.learn.jetpack.model.tv.TvShow
 
 class TvRoomStore(private val tvDao: TvDao) : TvDataStore {
-    override suspend fun getSets(): MutableList<TvShow>? {
+    override suspend fun getSets(page: Int): MutableList<TvShow>? {
         val response = tvDao.getAll()
         return if (response.isEmpty()) null else response
     }

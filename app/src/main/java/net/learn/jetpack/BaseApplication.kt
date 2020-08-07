@@ -2,12 +2,12 @@ package net.learn.jetpack
 
 import android.app.Application
 import net.learn.jetpack.database.AppDatabase
+import net.learn.jetpack.datastore.MovieStore.MovieRemoteStore
+import net.learn.jetpack.datastore.MovieStore.MovieRoomStore
+import net.learn.jetpack.datastore.TvStore.TvRemoteStore
+import net.learn.jetpack.datastore.TvStore.TvRoomStore
 import net.learn.jetpack.repository.MovieRepository
 import net.learn.jetpack.repository.TvRepository
-import net.learn.jetpack.ui.movies.store.MovieRemoteStore
-import net.learn.jetpack.ui.movies.store.MovieRoomStore
-import net.learn.jetpack.ui.tv.store.TvRemoteStore
-import net.learn.jetpack.ui.tv.store.TvRoomStore
 import net.learn.jetpack.utils.service.Retrofit
 
 class BaseApplication : Application() {
@@ -18,8 +18,7 @@ class BaseApplication : Application() {
         val appDatabase = AppDatabase.getInstance(this)
         MovieRepository.instance.apply {
             init(
-                MovieRoomStore(appDatabase.movieDao()),
-                MovieRemoteStore(api)
+                MovieRoomStore(appDatabase.movieDao()), MovieRemoteStore(api)
             )
         }
 

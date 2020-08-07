@@ -38,7 +38,7 @@ class TvShowFragment : Fragment() {
             TvListFactory(TvRepository.instance)
         vm = ViewModelProvider(this, factory).get(TvViewModel::class.java).apply {
             viewState.observe(viewLifecycleOwner, Observer(this@TvShowFragment::handleState))
-            swapRefresh.setOnRefreshListener { getSets() }
+            swapRefresh.setOnRefreshListener { getSets(1) }
         }
     }
 

@@ -1,11 +1,11 @@
-package net.learn.jetpack.ui.movies.store
+package net.learn.jetpack.datastore.MovieStore
 
 import net.learn.jetpack.utils.service.Api
 import net.learn.submission4mvvm.model.movies.Movie
 
 class MovieRemoteStore(private val api: Api) : MovieDataStore {
-    override suspend fun getSets(): MutableList<Movie>? {
-        val response = api.getMovies()
+    override suspend fun getSets(page: Int?): MutableList<Movie>? {
+        val response = api.getMovies(page = page)
         if (response.isSuccessful)
             return response.body()?.results
 

@@ -1,6 +1,4 @@
-package net.learn.jetpack.utils
-
-import net.learn.jetpack.data.MovieEntity
+package net.learn.jetpack.utils.Dummy
 
 object Dummy {
 

@@ -1,13 +1,13 @@
 package net.learn.jetpack.repository
 
+import net.learn.jetpack.datastore.TvStore.TvDataStore
 import net.learn.jetpack.model.tv.TvShow
-import net.learn.jetpack.ui.tv.store.TvDataStore
 
 class TvRepository private constructor() : BaseRepository<TvDataStore>() {
-    suspend fun getSets(): MutableList<TvShow>? {
-        val cache = localStore?.getSets()
+    suspend fun getSets(page: Int): MutableList<TvShow>? {
+        val cache = localStore?.getSets(page = page)
         if (cache != null) return cache
-        val response = remoteStore?.getSets()
+        val response = remoteStore?.getSets(page = page)
         localStore?.addAll(response)
         return response
     }

@@ -27,6 +27,7 @@
                 android:id="@+id/img_poster"
                 android:layout_width="95dp"
                 android:layout_height="140dp"
+                android:scaleType="centerCrop"
                 android:contentDescription="@string/image_poster" />
 
         </androidx.cardview.widget.CardView>

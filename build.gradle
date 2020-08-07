@@ -29,7 +29,7 @@ ext {
     roomVersion = '2.2.5'
     archLifecycleVersion = '2.2.0'
     coreTestingVersion = '2.1.0'
-    materialVersion = '1.1.0'
-    coroutines = '1.3.4'
+    materialVersion = '1.2.0'
+    coroutines = '1.3.7'
     retrofitVersion='2.9.0'
 }

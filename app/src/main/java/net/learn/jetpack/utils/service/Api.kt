@@ -11,12 +11,14 @@ interface Api {
     @GET("discover/movie")
     suspend fun getMovies(
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,
-        @Query("language") language: String = "en-US"
+        @Query("language") language: String = "en-US",
+        @Query("page") page: Int?
     ): Response<MovieResponse>
 
     @GET("discover/tv")
     suspend fun getTv(
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,
-        @Query("language") language: String = "en-US"
+        @Query("language") language: String = "en-US",
+        @Query("page") page: Int
     ): Response<TvResponse>
 }

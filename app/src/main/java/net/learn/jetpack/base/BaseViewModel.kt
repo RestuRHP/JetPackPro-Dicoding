@@ -1,8 +1,8 @@
 package net.learn.jetpack.base
 
 import androidx.lifecycle.ViewModel
-import net.learn.jetpack.data.MovieEntity
-import net.learn.jetpack.utils.Dummy
+import net.learn.jetpack.utils.Dummy.Dummy
+import net.learn.jetpack.utils.Dummy.MovieEntity
 
 
 class BaseViewModel : ViewModel() {
