@@ -29,8 +29,8 @@ class DetailActivity : AppCompatActivity() {
         )[BaseViewModel::class.java]
         val entityId = intent.getIntExtra(EXTRA_ID, 0)
         viewModel.setId(entityId)
-        val entity = viewModel.getDetails()
-        showDetail(entity)
+//        val entity = viewModel.getDetails()
+//        showDetail(entity)
 
         supportActionBar?.title = intent.getStringExtra(EXTRA_TITLE)
         supportActionBar?.elevation = 0f

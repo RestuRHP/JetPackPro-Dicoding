@@ -8,7 +8,7 @@ import net.learn.jetpack.model.tv.TvShow
 
 @Dao
 interface TvDao {
-    @Query("SELECT * FROM TvShow ")
+    @Query("SELECT * FROM TvShow ORDER BY VID ASC")
     suspend fun getAll(): MutableList<TvShow>
 
     @Query("DELETE FROM TvShow")

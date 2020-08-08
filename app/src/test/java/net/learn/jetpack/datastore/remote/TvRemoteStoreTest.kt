@@ -1,23 +1,32 @@
 package net.learn.jetpack.datastore.remote
 
 import kotlinx.coroutines.runBlocking
-import net.learn.jetpack.model.tv.TvShow
-import net.learn.jetpack.utils.service.Retrofit
-import org.junit.Assert.assertNotNull
+import net.learn.jetpack.service.Api
+import org.hamcrest.core.Is.`is`
+import org.junit.Assert
+import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 
-class TvRemoteStoreTest {
+@RunWith(JUnit4::class)
+class TvRemoteStoreTest : ApiAbstract<Api>() {
+    private lateinit var service: Api
 
-    var movieSet = mutableListOf<TvShow>()
+    @Before
+    fun iniService() {
+        this.service = createService(Api::class.java)
+    }
 
     @Test
-    fun getDataApi() {
-        val api = Retrofit.API
+    fun getData() {
+        enqueueResponse("tmdb_tv.json")
         runBlocking {
-            val response = api.getTv(page = 1)
-            assert(response.isSuccessful)
-            movieSet = response.body()!!.results
-            assertNotNull(movieSet)
+            val response = service.getTv(page = 1)
+            Assert.assertThat(response.body()?.results?.get(0)?.id, `is`(2734))
+            Assert.assertThat(
+                response.body()?.results?.get(0)?.title, `is`("Law & Order: Special Victims Unit")
+            )
         }
     }
 }

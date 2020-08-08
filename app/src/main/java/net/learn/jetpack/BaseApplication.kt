@@ -8,7 +8,7 @@ import net.learn.jetpack.datastore.TvStore.TvRemoteStore
 import net.learn.jetpack.datastore.TvStore.TvRoomStore
 import net.learn.jetpack.repository.MovieRepository
 import net.learn.jetpack.repository.TvRepository
-import net.learn.jetpack.utils.service.Retrofit
+import net.learn.jetpack.service.Retrofit
 
 class BaseApplication : Application() {
     override fun onCreate() {
@@ -28,4 +28,5 @@ class BaseApplication : Application() {
             )
         }
     }
+
 }

@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-@Entity(indices = [Index(value = ["id"], unique = true)])
+@Entity(indices = arrayOf(Index(value = ["id"], unique = true)))
 @Parcelize
 data class TvShow(
     @PrimaryKey(autoGenerate = true)

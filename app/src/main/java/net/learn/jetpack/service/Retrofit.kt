@@ -1,4 +1,4 @@
-package net.learn.jetpack.utils.service
+package net.learn.jetpack.service
 
 import net.learn.jetpack.BuildConfig
 import retrofit2.Retrofit

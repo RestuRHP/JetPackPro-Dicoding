@@ -1,9 +1,11 @@
 package net.learn.jetpack.ui.tv
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -31,6 +33,7 @@ class TvAdapter : RecyclerView.Adapter<TvAdapter.ViewHolder>() {
                 tv_overview.text = items.overview
                 tv_release.text = items.releaseDate
                 Glide.with(itemView.context)
+                    .asBitmap()
                     .load(BuildConfig.POSTER_PATH + items.posterPath)
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
@@ -38,6 +41,11 @@ class TvAdapter : RecyclerView.Adapter<TvAdapter.ViewHolder>() {
                     )
                     .dontAnimate()
                     .into(img_poster)
+                fun createPaletteAsync(bitmap: Bitmap) {
+                    Palette.from(bitmap).generate { palette ->
+                        // Use generated instance
+                    }
+                }
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_ID, items.id)
