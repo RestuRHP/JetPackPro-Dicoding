@@ -2,7 +2,7 @@ package net.learn.jetpack.repository
 
 import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.runBlocking
-import net.learn.jetpack.datastore.TvStore.TvDataStore
+import net.learn.jetpack.datastore.tv.TvDataStore
 import net.learn.jetpack.model.tv.TvShow
 import net.learn.jetpack.utils.Dummy.Dummy
 import org.junit.Assert.assertEquals
