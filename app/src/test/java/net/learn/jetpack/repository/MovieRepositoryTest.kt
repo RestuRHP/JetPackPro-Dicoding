@@ -2,7 +2,7 @@ package net.learn.jetpack.repository
 
 import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.runBlocking
-import net.learn.jetpack.datastore.MovieStore.MovieDataStore
+import net.learn.jetpack.datastore.movies.MovieDataStore
 import net.learn.jetpack.utils.Dummy.Dummy
 import net.learn.submission4mvvm.model.movies.Movie
 import org.junit.Assert.assertEquals

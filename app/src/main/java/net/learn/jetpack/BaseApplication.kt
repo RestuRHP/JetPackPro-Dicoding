@@ -2,10 +2,10 @@ package net.learn.jetpack
 
 import android.app.Application
 import net.learn.jetpack.database.AppDatabase
-import net.learn.jetpack.datastore.MovieStore.MovieRemoteStore
-import net.learn.jetpack.datastore.MovieStore.MovieRoomStore
-import net.learn.jetpack.datastore.TvStore.TvRemoteStore
-import net.learn.jetpack.datastore.TvStore.TvRoomStore
+import net.learn.jetpack.datastore.movies.MovieRemoteStore
+import net.learn.jetpack.datastore.movies.MovieRoomStore
+import net.learn.jetpack.datastore.tv.TvRemoteStore
+import net.learn.jetpack.datastore.tv.TvRoomStore
 import net.learn.jetpack.repository.MovieRepository
 import net.learn.jetpack.repository.TvRepository
 import net.learn.jetpack.service.Retrofit

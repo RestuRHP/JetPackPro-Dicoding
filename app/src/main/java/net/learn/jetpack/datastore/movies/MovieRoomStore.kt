@@ -1,4 +1,4 @@
-package net.learn.jetpack.datastore.MovieStore
+package net.learn.jetpack.datastore.movies
 
 import net.learn.jetpack.database.MovieDao
 import net.learn.submission4mvvm.model.movies.Movie

@@ -1,4 +1,4 @@
-package net.learn.jetpack.datastore.TvStore
+package net.learn.jetpack.datastore.tv
 
 import net.learn.jetpack.model.tv.TvShow
 

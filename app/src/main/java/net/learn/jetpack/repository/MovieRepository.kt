@@ -1,7 +1,7 @@
 package net.learn.jetpack.repository
 
 import android.util.Log
-import net.learn.jetpack.datastore.MovieStore.MovieDataStore
+import net.learn.jetpack.datastore.movies.MovieDataStore
 import net.learn.submission4mvvm.model.movies.Movie
 
 private const val MOVIE_STARTING_PAGE_INDEX = 1
