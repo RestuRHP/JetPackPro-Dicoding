@@ -8,7 +8,7 @@ import net.learn.submission4mvvm.model.movies.Movie
 
 @Dao
 interface MovieDao {
-    @Query("SELECT * FROM Movie ")
+    @Query("SELECT * FROM Movie ORDER BY VID ASC")
     suspend fun getAll(): MutableList<Movie>
 
     @Query("DELETE FROM Movie")

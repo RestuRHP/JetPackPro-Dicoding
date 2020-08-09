@@ -1,27 +1,57 @@
-package net.learn.submission4mvvm.model.detail
+package net.learn.jetpack.model.detail
 
-import android.os.Parcelable
+
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 data class Detail(
-    @SerializedName("id")
-    val id: Int,
+    @SerializedName("adult")
+    var adult: Boolean,
     @SerializedName("backdrop_path")
-    val backdropPath: String,
+    var backdropPath: String,
+    @SerializedName("belongs_to_collection")
+    var belongsToCollection: BelongsToCollection,
+    @SerializedName("budget")
+    var budget: Int,
+    @SerializedName("genres")
+    var genres: List<Genre>,
+    @SerializedName("homepage")
+    var homepage: String,
+    @SerializedName("id")
+    var id: Int,
+    @SerializedName("imdb_id")
+    var imdbId: String,
     @SerializedName("original_language")
-    val originalLanguage: String,
+    var originalLanguage: String,
     @SerializedName("original_title")
-    val originalTitle: String,
+    var originalTitle: String,
     @SerializedName("overview")
-    val overview: String,
+    var overview: String,
+    @SerializedName("popularity")
+    var popularity: Double,
     @SerializedName("poster_path")
-    val posterPath: String,
+    var posterPath: String,
+    @SerializedName("production_companies")
+    var productionCompanies: List<ProductionCompany>,
+    @SerializedName("production_countries")
+    var productionCountries: List<ProductionCountry>,
     @SerializedName("release_date")
-    val releaseDate: String,
+    var releaseDate: String,
+    @SerializedName("revenue")
+    var revenue: Int,
+    @SerializedName("runtime")
+    var runtime: Int,
+    @SerializedName("spoken_languages")
+    var spokenLanguages: List<SpokenLanguage>,
+    @SerializedName("status")
+    var status: String,
+    @SerializedName("tagline")
+    var tagline: String,
     @SerializedName("title")
-    val title: String,
+    var title: String,
+    @SerializedName("video")
+    var video: Boolean,
     @SerializedName("vote_average")
-    val voteAverage: Double
-) : Parcelable
+    var voteAverage: Double,
+    @SerializedName("vote_count")
+    var voteCount: Int
+)

@@ -7,6 +7,21 @@ androidExtensions {
     experimental = true
 }
 
+def getProperty(String filename, String propName) {
+    def propsFile = rootProject.file(filename)
+    if (propsFile.exists()) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        if (props[propName] != null) {
+            return props[propName]
+        } else {
+            print("No such property " + propName + " in file " + filename)
+        }
+    } else {
+        print(filename + " does not exist!")
+    }
+}
+
 android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -19,17 +34,17 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "net.learn.submission_1"
+        applicationId "net.learn.jetpack"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
-        buildConfigField 'String', 'API_KEY', "\"0bc4d12e12cd1880a3493cafe4cdb8e0\""
-        buildConfigField 'String', 'BASE_URL', "\"https://api.themoviedb.org/3/\""
-        buildConfigField 'String', 'SEARCH_URL', "\"https://api.themoviedb.org/3/search/\""
-        buildConfigField 'String', 'POSTER_PATH', "\"https://image.tmdb.org/t/p/w185/\""
-        buildConfigField 'String', 'BACKDROP_PATH', "\"https://image.tmdb.org/t/p/w500/\""
+        buildConfigField "String", "API_KEY", "\"${getProperty("local.properties", "tmdb_api_key")}\""
+        buildConfigField "String", "BASE_URL", "\"${getProperty("local.properties", "base_url")}\""
+        buildConfigField "String", "SEARCH_URL", "\"${getProperty("local.properties", "search_url")}\""
+        buildConfigField "String", "POSTER_PATH", "\"${getProperty("local.properties", "poster_path")}\""
+        buildConfigField "String", "BACKDROP_PATH", "\"${getProperty("local.properties", "backdrop_path")}\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -46,8 +61,11 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     implementation 'androidx.core:core-ktx:1.3.1'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    //paging library
+    implementation 'androidx.paging:paging-runtime:2.1.2'
 
     // Kotlin components
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -72,23 +90,39 @@ dependencies {
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
-    androidTestImplementation "androidx.room:room-testing:$roomVersion"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
 
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
+
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.2.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+
+    implementation 'androidx.palette:palette:1.0.0'
+
+//    // RxJava
+//    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
+//    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.3.0-rc03'
+    androidTestImplementation "androidx.room:room-testing:$roomVersion"
+    testImplementation "androidx.room:room-testing:$roomVersion"
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.8.0'
     testImplementation 'junit:junit:4.13'
     testImplementation "androidx.arch.core:core-testing:2.1.0"
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     testImplementation 'org.mockito:mockito-core:2.23.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
-    implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
-    androidTestImplementation 'androidx.test:rules:1.2.0'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
 
 }
 

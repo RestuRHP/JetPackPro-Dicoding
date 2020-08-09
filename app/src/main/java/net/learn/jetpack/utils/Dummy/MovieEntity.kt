@@ -1,4 +1,4 @@
-package net.learn.jetpack.data
+package net.learn.jetpack.utils.Dummy
 
 
 data class MovieEntity(

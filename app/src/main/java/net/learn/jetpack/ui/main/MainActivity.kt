@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import net.learn.jetpack.R
@@ -20,10 +21,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(navSelection)
-        if (savedInstanceState == null) {
-            bottomNavigationView.selectedItemId = R.id.navigation_movies
-        }
+//        bottomNavigationView.setOnNavigationItemSelectedListener(navSelection)
+//        if (savedInstanceState == null) {
+//            bottomNavigationView.selectedItemId = R.id.navigation_movies
+//        }
+        initializeUI()
     }
 
     private val navSelection =
@@ -57,6 +59,33 @@ class MainActivity : AppCompatActivity() {
     private fun setActionBarTitle(title: String) {
         if (supportActionBar != null) {
             supportActionBar?.title = title
+        }
+    }
+
+    private fun initializeUI() {
+        with(main_viewpager) {
+            adapter = MainPagerAdapter(supportFragmentManager)
+            offscreenPageLimit = 3
+            addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrollStateChanged(state: Int) = Unit
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) = Unit
+
+                override fun onPageSelected(position: Int) {
+                    bottomNavigationView.menu.getItem(position).isChecked = true
+                }
+            })
+            bottomNavigationView.setOnNavigationItemSelectedListener {
+                when (it.itemId) {
+                    R.id.navigation_movies -> currentItem = 0
+                    R.id.navigation_tvshows -> currentItem = 1
+//                    R.id.action_three -> currentItem = 2
+                }
+                true
+            }
         }
     }
 }

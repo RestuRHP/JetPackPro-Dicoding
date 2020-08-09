@@ -1,14 +1,16 @@
-package net.learn.jetpack.utils
+package net.learn.jetpack.utils.Dummy
 
-import net.learn.jetpack.data.MovieEntity
+import net.learn.jetpack.model.tv.TvShow
+import net.learn.submission4mvvm.model.movies.Movie
 
 object Dummy {
 
-    fun generateDummnyMovies(): ArrayList<MovieEntity> {
-        val listItem = ArrayList<MovieEntity>()
+    fun generateDummnyMovies(): List<Movie> {
+        val listItem = ArrayList<Movie>()
 
         listItem.add(
-            MovieEntity(
+            Movie(
+                VID = null,
                 id = 1,
                 backdropPath = "m0ObOaJBerZ3Unc74l471ar8Iiy.jpg",
                 originalLanguage = "en",
@@ -20,7 +22,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            Movie(
+                VID = null,
                 id = 2,
                 backdropPath = "xXBnM6uSTk6qqCf0SRZKXcga9Ba.jpg",
                 originalLanguage = "en",
@@ -32,7 +35,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            Movie(
+                VID = null,
                 id = 3,
                 backdropPath = "AeDS2MKGFy6QcjgWbJBde0Ga6Hd.jpg",
                 originalLanguage = "en",
@@ -44,7 +48,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            Movie(
+                VID = null,
                 id = 4,
                 backdropPath = "lMbUiOZh8wELqY63v3ou54yTvEG.jpg",
                 originalLanguage = "en",
@@ -56,7 +61,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            Movie(
+                VID = null,
                 id = 5,
                 backdropPath = "d7JUXVvjvVCXWs1mlpyO5ESdWdT.jpg",
                 originalLanguage = "en",
@@ -68,7 +74,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            Movie(
+                VID = null,
                 id = 6,
                 backdropPath = "n1RohH2VoK1CdVI2fXvcP19dSlm.jpg",
                 originalLanguage = "en",
@@ -80,7 +87,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            Movie(
+                VID = null,
                 id = 7,
                 backdropPath = "n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
                 originalLanguage = "en",
@@ -92,7 +100,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            Movie(
+                VID = null,
                 id = 8,
                 backdropPath = "9xNOiv6DZZjH7ABoUUDP0ZynouU.jpg",
                 originalLanguage = "en",
@@ -104,7 +113,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            Movie(
+                VID = null,
                 id = 9,
                 backdropPath = "rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
                 originalLanguage = "en",
@@ -116,7 +126,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            Movie(
+                VID = null,
                 id = 10,
                 backdropPath = "8IjnyGbzcX5Ulb4kXLnecgWDEYA.jpg",
                 originalLanguage = "en",
@@ -129,12 +140,12 @@ object Dummy {
         )
         return listItem
     }
-
-    fun generateDummyTvShows(): ArrayList<MovieEntity> {
-        val listItem = ArrayList<MovieEntity>()
+    fun generateDummyTvShows(): List<TvShow> {
+        val listItem = ArrayList<TvShow>()
 
         listItem.add(
-            MovieEntity(
+            TvShow(
+                VID = null,
                 id = 21,
                 backdropPath = "cD9PxbrdWYgL7MUpD9eOYuiSe2P.jpg",
                 originalLanguage = "en",
@@ -146,7 +157,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            TvShow(
+                VID = null,
                 id = 22,
                 backdropPath = "adZ9ldSlkGfLfsHNbh37ZThCcgU.jpg",
                 originalLanguage = "en",
@@ -158,7 +170,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            TvShow(
+                VID = null,
                 id = 23,
                 backdropPath = "4oE4vT4q0AD2cX3wcMBVzCsME8G.jpg",
                 originalLanguage = "en",
@@ -170,7 +183,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            TvShow(
+                VID = null,
                 id = 24,
                 backdropPath = "l0qVZIpXtIo7km9u5Yqh0nKPOr5.jpg",
                 originalLanguage = "en",
@@ -182,7 +196,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            TvShow(
+                VID = null,
                 id = 25,
                 backdropPath = "uzUPwWSAheYKdavFCcod9M6y2rf.jpg",
                 originalLanguage = "en",
@@ -194,7 +209,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            TvShow(
+                VID = null,
                 id = 26,
                 backdropPath = "jC1KqsFx8ZyqJyQa2Ohi7xgL7XC.jpg",
                 originalLanguage = "en",
@@ -206,7 +222,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            TvShow(
+                VID = null,
                 id = 27,
                 backdropPath = "nVRyd8hlg0ZLxBn9RaI7mUMQLnz.jpg",
                 originalLanguage = "en",
@@ -218,7 +235,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            TvShow(
+                VID = null,
                 id = 28,
                 backdropPath = "edmk8xjGBsYVIf4QtLY9WMaMcXZ.jpg",
                 originalLanguage = "en",
@@ -230,7 +248,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            TvShow(
+                VID = null,
                 id = 29,
                 backdropPath = "nWw20ipGipwdOyLTkFfX2Uz4Grp.jpg",
                 originalLanguage = "en",
@@ -242,7 +261,8 @@ object Dummy {
             )
         )
         listItem.add(
-            MovieEntity(
+            TvShow(
+                VID = null,
                 id = 30,
                 backdropPath = "tvjCdVRkaaab2ezM9BctkAOXeyW.jpg",
                 originalLanguage = "en",

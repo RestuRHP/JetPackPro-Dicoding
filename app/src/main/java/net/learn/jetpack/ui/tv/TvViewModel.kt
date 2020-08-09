@@ -1,22 +1,24 @@
-package net.learn.jetpack.ui.movies
+package net.learn.jetpack.ui.tv
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import net.learn.jetpack.repository.MovieRepository
+import net.learn.jetpack.model.tv.TvShow
+import net.learn.jetpack.repository.TvRepository
 import net.learn.jetpack.ui.BaseViewState
-import net.learn.submission4mvvm.model.movies.Movie
 
-class MovieViewModel(private val movieSet: MovieRepository) : ViewModel() {
+class TvViewModel(private val tvSet: TvRepository) : ViewModel() {
+
     companion object {
         private const val VISIBLE_THRESHOLD = 1
     }
 
-    private val mViewState = MutableLiveData<BaseViewState<Movie>>().apply {
+    private val mViewState = MutableLiveData<BaseViewState<TvShow>>().apply {
         value = BaseViewState(loading = true)
     }
-    val viewState: MutableLiveData<BaseViewState<Movie>>
+    val viewState: LiveData<BaseViewState<TvShow>>
         get() = mViewState
 
     init {
@@ -25,7 +27,7 @@ class MovieViewModel(private val movieSet: MovieRepository) : ViewModel() {
 
     fun getSets() = viewModelScope.launch {
         try {
-            val data = movieSet.getSets()
+            val data = tvSet.getSets()
             mViewState.value = mViewState.value?.copy(loading = false, error = null, data = data)
         } catch (ex: Exception) {
             mViewState.value = mViewState.value?.copy(loading = false, error = ex, data = null)
@@ -36,8 +38,8 @@ class MovieViewModel(private val movieSet: MovieRepository) : ViewModel() {
         viewModelScope.launch {
             if (visibleItemCount + lastVisibleItemPosition + VISIBLE_THRESHOLD >= totalItemCount) {
                 try {
-                    movieSet.paginationSets()
-                    val data = movieSet.loadPage()
+                    tvSet.paginationSets()
+                    val data = tvSet.loadPage()
                     mViewState.value =
                         mViewState.value?.copy(loading = false, error = null, data = data)
                 } catch (ex: Exception) {

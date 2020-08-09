@@ -10,8 +10,8 @@ import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_movie.view.*
 import net.learn.jetpack.BuildConfig
 import net.learn.jetpack.R
-import net.learn.jetpack.data.MovieEntity
 import net.learn.jetpack.ui.detail.DetailActivity
+import net.learn.jetpack.utils.Dummy.MovieEntity
 
 
 class BaseAdapter : RecyclerView.Adapter<BaseAdapter.Holder>() {

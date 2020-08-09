@@ -1,8 +1,7 @@
 package net.learn.jetpack.base
 
 import androidx.lifecycle.ViewModel
-import net.learn.jetpack.data.MovieEntity
-import net.learn.jetpack.utils.Dummy
+import net.learn.jetpack.utils.Dummy.MovieEntity
 
 
 class BaseViewModel : ViewModel() {
@@ -10,23 +9,23 @@ class BaseViewModel : ViewModel() {
     private var entity: MovieEntity? = null
     private var id: Int? = 0
 
-    fun getDetails(): MovieEntity? {
-        val entityList: MutableList<MovieEntity> = ArrayList()
-        entityList.addAll(Dummy.generateDummnyMovies())
-        entityList.addAll(Dummy.generateDummyTvShows())
-        for (i in entityList.indices) {
-            val mEntity = entityList[i]
-            if (mEntity.id == id) {
-                entity = mEntity
-            }
-        }
-        return entity
-    }
+//    fun getDetails(): MovieEntity? {
+//        val entityList: MutableList<MovieEntity> = ArrayList()
+//        entityList.addAll(Dummy.generateDummnyMovies())
+//        entityList.addAll(Dummy.generateDummyTvShows())
+//        for (i in entityList.indices) {
+//            val mEntity = entityList[i]
+//            if (mEntity.id == id) {
+//                entity = mEntity
+//            }
+//        }
+//        return entity
+//    }
 
     fun setId(id: Int?) {
         this.id = id
     }
 
-    fun getMovies(): List<MovieEntity> = Dummy.generateDummnyMovies()
-    fun getTvShows(): List<MovieEntity> = Dummy.generateDummyTvShows()
+//    fun getMovies(): List<MovieEntity> = Dummy.generateDummnyMovies()
+//    fun getTvShows(): List<MovieEntity> = Dummy.generateDummyTvShows()
 }
