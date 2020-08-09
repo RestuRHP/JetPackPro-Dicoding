@@ -23,6 +23,7 @@ class TvRemoteStoreTest : ApiAbstract<Api>() {
         enqueueResponse("tmdb_tv.json")
         runBlocking {
             val response = service.getTv(page = 1)
+            Assert.assertNotNull(response.body()?.results)
             Assert.assertThat(response.body()?.results?.get(0)?.id, `is`(2734))
             Assert.assertThat(
                 response.body()?.results?.get(0)?.title, `is`("Law & Order: Special Victims Unit")
