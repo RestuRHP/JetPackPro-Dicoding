@@ -41,11 +41,11 @@ class TvAdapter : RecyclerView.Adapter<TvAdapter.ViewHolder>() {
                     )
                     .dontAnimate()
                     .into(img_poster)
-                fun createPaletteAsync(bitmap: Bitmap) {
-                    Palette.from(bitmap).generate { palette ->
-                        // Use generated instance
-                    }
-                }
+//                fun createPaletteAsync(bitmap: Bitmap) {
+//                    Palette.from(bitmap).generate { palette ->
+//                        // Use generated instance
+//                    }
+//                }
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.EXTRA_ID, items.id)

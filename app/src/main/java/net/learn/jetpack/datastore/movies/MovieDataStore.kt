@@ -1,6 +1,6 @@
 package net.learn.jetpack.datastore.movies
 
-import net.learn.submission4mvvm.model.movies.Movie
+import net.learn.jetpack.model.movies.Movie
 
 interface MovieDataStore {
     suspend fun getSets(page: Int?): MutableList<Movie>?

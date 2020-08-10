@@ -21,39 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        bottomNavigationView.setOnNavigationItemSelectedListener(navSelection)
-//        if (savedInstanceState == null) {
-//            bottomNavigationView.selectedItemId = R.id.navigation_movies
-//        }
         initializeUI()
-    }
-
-    private val navSelection =
-        BottomNavigationView.OnNavigationItemSelectedListener { menuItem: MenuItem ->
-            when (menuItem.itemId) {
-                R.id.navigation_movies -> {
-                    content = MovieFragment()
-                    title = getString(R.string.movies)
-                    setActionBarTitle(title)
-                    addFragment(content)
-                    return@OnNavigationItemSelectedListener true
-                }
-                R.id.navigation_tvshows -> {
-                    content = TvShowFragment()
-                    title = getString(R.string.tvShows)
-                    setActionBarTitle(title)
-                    addFragment(content)
-                    return@OnNavigationItemSelectedListener true
-                }
-            }
-            false
-        }
-
-    private fun addFragment(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.layout_container, fragment, fragment.javaClass.simpleName)
-            .commit()
     }
 
     private fun setActionBarTitle(title: String) {
@@ -65,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private fun initializeUI() {
         with(main_viewpager) {
             adapter = MainPagerAdapter(supportFragmentManager)
-            offscreenPageLimit = 3
+            offscreenPageLimit = 2
             addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                 override fun onPageScrollStateChanged(state: Int) = Unit
                 override fun onPageScrolled(
@@ -75,13 +43,34 @@ class MainActivity : AppCompatActivity() {
                 ) = Unit
 
                 override fun onPageSelected(position: Int) {
-                    bottomNavigationView.menu.getItem(position).isChecked = true
+//                    bottomNavigationView.menu.getItem(position).isChecked = true
+                    when(position){
+                        0 -> {
+                            currentItem = 0
+                            title = getString(R.string.movies)
+                            setActionBarTitle(title)
+                        }
+                        1 ->{
+                            currentItem = 1
+                            title = getString(R.string.tvShows)
+                            setActionBarTitle(title)
+                        }
+                    }
                 }
+
             })
             bottomNavigationView.setOnNavigationItemSelectedListener {
                 when (it.itemId) {
-                    R.id.navigation_movies -> currentItem = 0
-                    R.id.navigation_tvshows -> currentItem = 1
+                    R.id.navigation_movies -> {
+                        currentItem = 0
+                        title = getString(R.string.movies)
+                        setActionBarTitle(title)
+                    }
+                    R.id.navigation_tvshows -> {
+                        currentItem = 1
+                        title = getString(R.string.tvShows)
+                        setActionBarTitle(title)
+                    }
 //                    R.id.action_three -> currentItem = 2
                 }
                 true

@@ -1,7 +1,7 @@
 package net.learn.jetpack.datastore.movies
 
 import net.learn.jetpack.service.Api
-import net.learn.submission4mvvm.model.movies.Movie
+import net.learn.jetpack.model.movies.Movie
 
 class MovieRemoteStore(private val api: Api) : MovieDataStore {
     override suspend fun getSets(page: Int?): MutableList<Movie>? {

@@ -16,7 +16,7 @@ class TvViewModel(private val tvSet: TvRepository) : ViewModel() {
     }
 
     private val mViewState = MutableLiveData<BaseViewState<TvShow>>().apply {
-        value = BaseViewState(loading = true)
+        value = BaseViewState(loading = true, error = null, data = null)
     }
     val viewState: LiveData<BaseViewState<TvShow>>
         get() = mViewState

@@ -1,7 +1,7 @@
 package net.learn.jetpack.utils.Dummy
 
 import net.learn.jetpack.model.tv.TvShow
-import net.learn.submission4mvvm.model.movies.Movie
+import net.learn.jetpack.model.movies.Movie
 
 object Dummy {
 

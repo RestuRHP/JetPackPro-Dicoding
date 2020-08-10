@@ -4,7 +4,7 @@ import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.runBlocking
 import net.learn.jetpack.datastore.movies.MovieDataStore
 import net.learn.jetpack.utils.Dummy.Dummy
-import net.learn.submission4mvvm.model.movies.Movie
+import net.learn.jetpack.model.movies.Movie
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
