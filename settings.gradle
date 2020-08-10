@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "submission-1"
+rootProject.name = "jetpack"

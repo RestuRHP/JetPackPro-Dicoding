@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.display_fragment.*
 import net.learn.jetpack.R
 import net.learn.jetpack.repository.MovieRepository
 import net.learn.jetpack.ui.BaseViewState
-import net.learn.submission4mvvm.model.movies.Movie
+import net.learn.jetpack.model.movies.Movie
 
 class MovieFragment : Fragment() {
 

@@ -26,7 +26,7 @@
                 android:layout_height="200dp"
                 android:contentDescription="@string/image_poster"
                 android:scaleType="centerCrop"
-                android:src="@drawable/theoldguard" />
+                android:src="@drawable/backdrop" />
 
             <!--            <androidx.appcompat.widget.Toolbar-->
             <!--                android:layout_width="match_parent"-->

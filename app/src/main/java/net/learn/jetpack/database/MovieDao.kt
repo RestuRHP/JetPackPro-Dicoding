@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import net.learn.submission4mvvm.model.movies.Movie
+import net.learn.jetpack.model.movies.Movie
 
 @Dao
 interface MovieDao {

@@ -1,11 +1,11 @@
-package net.learn.jetpack.utils.Dummy
+package net.learn.jetpack.utils
 
+import net.learn.jetpack.model.movies.Movie
 import net.learn.jetpack.model.tv.TvShow
-import net.learn.submission4mvvm.model.movies.Movie
 
 object Dummy {
 
-    fun generateDummnyMovies(): List<Movie> {
+    fun generateDummyMovies(): List<Movie> {
         val listItem = ArrayList<Movie>()
 
         listItem.add(

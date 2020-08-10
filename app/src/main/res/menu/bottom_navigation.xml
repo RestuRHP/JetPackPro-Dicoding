@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_movie"
         android:title="@string/movies" />
     <item
-        android:id="@+id/navigation_tvshows"
+        android:id="@+id/navigation_tvShows"
         android:icon="@drawable/ic_live_tv"
         android:title="@string/tvShows" />
 </menu>
