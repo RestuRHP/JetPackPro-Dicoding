@@ -10,8 +10,8 @@ import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_movie.view.*
 import net.learn.jetpack.BuildConfig
 import net.learn.jetpack.R
-import net.learn.jetpack.ui.detail.DetailActivity
 import net.learn.jetpack.model.movies.Movie
+import net.learn.jetpack.ui.detail.DetailActivity
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     private val movieSets = mutableListOf<Movie>()

@@ -140,6 +140,7 @@ object Dummy {
         )
         return listItem
     }
+
     fun generateDummyTvShows(): List<TvShow> {
         val listItem = ArrayList<TvShow>()
 

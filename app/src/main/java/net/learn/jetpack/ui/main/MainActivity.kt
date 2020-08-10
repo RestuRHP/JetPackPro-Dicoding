@@ -41,13 +41,13 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onPageSelected(position: Int) {
 //                    bottomNavigationView.menu.getItem(position).isChecked = true
-                    when(position){
+                    when (position) {
                         0 -> {
                             currentItem = 0
                             title = getString(R.string.movies)
                             setActionBarTitle(title)
                         }
-                        1 ->{
+                        1 -> {
                             currentItem = 1
                             title = getString(R.string.tvShows)
                             setActionBarTitle(title)
