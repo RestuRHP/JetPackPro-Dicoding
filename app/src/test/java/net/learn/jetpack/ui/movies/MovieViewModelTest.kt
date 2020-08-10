@@ -1,21 +1,20 @@
 package net.learn.jetpack.ui.movies
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.setMain
 import net.learn.jetpack.model.movies.Movie
 import net.learn.jetpack.repository.MovieRepository
-import net.learn.jetpack.utils.Dummy.Dummy
-import org.junit.Test
+import net.learn.jetpack.utils.Dummy
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.*
+import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
@@ -41,7 +40,7 @@ class MovieViewModelTest {
 
     @Test
     fun getSets() {
-        movieSet.addAll(Dummy.generateDummnyMovies())
+        movieSet.addAll(Dummy.generateDummyMovies())
         runBlocking {
             `when`(movieRepository.getSets()).thenReturn(movieSet)
             movieViewModel.getSets()
@@ -54,7 +53,7 @@ class MovieViewModelTest {
 
     @Test
     fun listScrolled() {
-        movieSet.addAll(Dummy.generateDummnyMovies())
+        movieSet.addAll(Dummy.generateDummyMovies())
         runBlocking {
             `when`(movieRepository.paginationSets()).thenReturn(null)
             `when`(movieRepository.loadPage()).thenReturn(movieSet)

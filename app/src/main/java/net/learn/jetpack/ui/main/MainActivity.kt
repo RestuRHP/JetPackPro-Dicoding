@@ -1,15 +1,12 @@
 package net.learn.jetpack.ui.main
 
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import net.learn.jetpack.R
 import net.learn.jetpack.ui.movies.MovieFragment
-import net.learn.jetpack.ui.tv.TvShowFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -66,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                         title = getString(R.string.movies)
                         setActionBarTitle(title)
                     }
-                    R.id.navigation_tvshows -> {
+                    R.id.navigation_tvShows -> {
                         currentItem = 1
                         title = getString(R.string.tvShows)
                         setActionBarTitle(title)

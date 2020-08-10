@@ -3,8 +3,8 @@ package net.learn.jetpack.repository
 import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.runBlocking
 import net.learn.jetpack.datastore.movies.MovieDataStore
-import net.learn.jetpack.utils.Dummy.Dummy
 import net.learn.jetpack.model.movies.Movie
+import net.learn.jetpack.utils.Dummy
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -32,7 +32,7 @@ class MovieRepositoryTest {
 
     @Test
     fun getSets() {
-        movieSet.addAll(Dummy.generateDummnyMovies())
+        movieSet.addAll(Dummy.generateDummyMovies())
         runBlocking {
             Mockito.`when`(localStore?.getSets(1)).thenReturn(movieSet)
             val movies = movieRepository?.getSets()

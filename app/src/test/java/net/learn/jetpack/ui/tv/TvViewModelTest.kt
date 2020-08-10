@@ -7,7 +7,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.setMain
 import net.learn.jetpack.model.tv.TvShow
 import net.learn.jetpack.repository.TvRepository
-import net.learn.jetpack.utils.Dummy.Dummy
+import net.learn.jetpack.utils.Dummy
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule

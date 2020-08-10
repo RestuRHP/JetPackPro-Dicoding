@@ -4,7 +4,7 @@ import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.runBlocking
 import net.learn.jetpack.datastore.tv.TvDataStore
 import net.learn.jetpack.model.tv.TvShow
-import net.learn.jetpack.utils.Dummy.Dummy
+import net.learn.jetpack.utils.Dummy
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
