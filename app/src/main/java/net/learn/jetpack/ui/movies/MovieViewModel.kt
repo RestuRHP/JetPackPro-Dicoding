@@ -3,6 +3,7 @@ package net.learn.jetpack.ui.movies
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagedList
 import kotlinx.coroutines.launch
 import net.learn.jetpack.model.movies.Movie
 import net.learn.jetpack.repository.MovieRepository
@@ -45,4 +46,14 @@ class MovieViewModel(private val movieSet: MovieRepository) : ViewModel() {
                 }
             }
         }
+
+    private fun createConfig(): PagedList.Config {
+        val configBuilder = PagedList.Config.Builder()
+        return configBuilder
+            .setEnablePlaceholders(true)
+            .setInitialLoadSizeHint(1)
+            .setPrefetchDistance(10)
+            .setPageSize(10)
+            .build()
+    }
 }

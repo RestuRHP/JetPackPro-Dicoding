@@ -53,6 +53,7 @@ class MovieFragment : Fragment() {
     private fun handleState(viewState: BaseViewState<Movie>?) {
         viewState?.let {
             toggleLoading(it.loading)
+            loadMore(it.loadmore)
             it.data?.let { data -> showData(data) }
             it.error?.let { error -> showError(error) }
         }
@@ -69,6 +70,11 @@ class MovieFragment : Fragment() {
 
     private fun toggleLoading(loading: Boolean) {
         swapRefresh.isRefreshing = loading
+    }
+
+    private fun loadMore(loading: Boolean) {
+        if (loading) tv_loadmore_message.visibility =
+            View.VISIBLE else tv_loadmore_message.visibility = View.GONE
     }
 
     private fun setupScrollListener() {

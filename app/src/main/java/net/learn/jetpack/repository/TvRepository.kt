@@ -29,10 +29,8 @@ class TvRepository private constructor() : BaseRepository<TvDataStore>() {
         isRequestInProgress = true
         var successful = false
         try {
-            Log.d("lasRequestedPage", "$page")
             val response = remoteStore?.getSets(page = page)
             localStore?.addAll(response)
-            loadPage()
             successful = true
         } catch (ex: Exception) {
             Log.d("Exception", "$ex")

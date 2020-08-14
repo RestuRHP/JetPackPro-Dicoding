@@ -1,18 +1,26 @@
 package net.learn.jetpack.repository
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import net.learn.jetpack.datastore.movies.MovieDataStore
 import net.learn.jetpack.model.movies.Movie
+import net.learn.jetpack.ui.BaseViewState
 
 private const val MOVIE_STARTING_PAGE_INDEX = 1
 
 class MovieRepository private constructor() : BaseRepository<MovieDataStore>() {
     private var nextRequestPage = MOVIE_STARTING_PAGE_INDEX
     private var isRequestInProgress = false
+    private var state = MutableLiveData<BaseViewState<Movie>>()
+
+//    private var sourceFactory:DataSource.Factory<Int,Movie>()
+//        get()
+
+//    private var keySource: PagingSource<Int, Movie>()
+//    get()=loadPage()
 
     suspend fun getSets(): MutableList<Movie>? {
-        val cache = loadPage()
-        if (cache != null) return cache
+        if (loadPage() != null) return loadPage()
         saveToDB(nextRequestPage)
         return loadPage()
     }
@@ -29,13 +37,13 @@ class MovieRepository private constructor() : BaseRepository<MovieDataStore>() {
         isRequestInProgress = true
         var successful = false
         try {
-            Log.d("lasRequestedPage", "$page")
+            state.postValue(BaseViewState(loading = true))
             val response = remoteStore?.getSets(page = page)
             localStore?.addAll(response)
-            loadPage()
             successful = true
         } catch (ex: Exception) {
             Log.d("Exception", "$ex")
+            state.postValue(BaseViewState(loading = false, error = ex))
         }
         isRequestInProgress = false
         return successful

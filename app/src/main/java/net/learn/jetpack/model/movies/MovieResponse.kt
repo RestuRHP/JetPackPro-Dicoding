@@ -8,9 +8,11 @@ data class MovieResponse(
     @SerializedName("page")
     var page: Int,
     @SerializedName("results")
-    var results: MutableList<Movie>,
-    @SerializedName("total_pages")
-    var totalPages: Int,
-    @SerializedName("total_results")
-    var totalResults: Int
+    var results: MutableList<Movie>
+//    ,
+//    @SerializedName("total_pages")
+//    var totalPages: Int
+//    ,
+//    @SerializedName("total_results")
+//    var totalResults: Int
 )

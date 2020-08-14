@@ -1,6 +1,5 @@
 package net.learn.jetpack.ui.main
 
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
@@ -13,7 +12,6 @@ import androidx.test.rule.ActivityTestRule
 import net.learn.jetpack.R
 import net.learn.jetpack.model.movies.Movie
 import net.learn.jetpack.utils.EspressoIdlingResource
-import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.Matchers.allOf
 import org.junit.After
 import org.junit.Before
@@ -70,12 +68,6 @@ class MainActivityTest {
                 click()
             )
         )
-        onView(
-            allOf(
-                instanceOf(TextView::class.java),
-                withParent(withResourceName("action_bar"))
-            )
-        ).check(matches(isDisplayed()))
         onView(withId(R.id.tv_release)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_rating)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_language)).check(matches(isDisplayed()))
@@ -94,5 +86,6 @@ class MainActivityTest {
                 click()
             )
         )
+        onView(isRoot()).perform(ViewActions.pressBack())
     }
 }
