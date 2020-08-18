@@ -1,60 +1,30 @@
 package net.learn.jetpack.repository
 
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import net.learn.jetpack.datastore.movies.MovieDataStore
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
+import net.learn.jetpack.database.AppDatabase
+import net.learn.jetpack.datastore.pagination.PageDataSource
 import net.learn.jetpack.model.movies.Movie
-import net.learn.jetpack.ui.BaseViewState
+import net.learn.jetpack.service.Api
 
 private const val MOVIE_STARTING_PAGE_INDEX = 1
 
-class MovieRepository private constructor() : BaseRepository<MovieDataStore>() {
-    private var nextRequestPage = MOVIE_STARTING_PAGE_INDEX
-    private var isRequestInProgress = false
-    private var state = MutableLiveData<BaseViewState<Movie>>()
+class MovieRepository(private val service: Api, private val database: AppDatabase) {
 
-//    private var sourceFactory:DataSource.Factory<Int,Movie>()
-//        get()
+    fun getMovie(): Flow<PagingData<Movie>> {
+        val pagingSourceFactory = { database.movieDao().getAll() }
 
-//    private var keySource: PagingSource<Int, Movie>()
-//    get()=loadPage()
-
-    suspend fun getSets(): MutableList<Movie>? {
-        if (loadPage() != null) return loadPage()
-        saveToDB(nextRequestPage)
-        return loadPage()
-    }
-
-    suspend fun paginationSets() {
-        if (isRequestInProgress) return
-        val successful = saveToDB(nextRequestPage)
-        if (successful) {
-            nextRequestPage++
-        }
-    }
-
-    private suspend fun saveToDB(page: Int?): Boolean {
-        isRequestInProgress = true
-        var successful = false
-        try {
-            state.postValue(BaseViewState(loading = true))
-            val response = remoteStore?.getSets(page = page)
-            localStore?.addAll(response)
-            successful = true
-        } catch (ex: Exception) {
-            Log.d("Exception", "$ex")
-            state.postValue(BaseViewState(loading = false, error = ex))
-        }
-        isRequestInProgress = false
-        return successful
-    }
-
-    suspend fun loadPage(): MutableList<Movie>? {
-        val cache = localStore?.getSets(nextRequestPage)
-        return cache
+        return Pager(
+            config = PagingConfig(pageSize = NETWORK_PAGE_SIZE, enablePlaceholders = false),
+            remoteMediator = PageDataSource(service, database),
+            pagingSourceFactory = pagingSourceFactory
+        ).flow
     }
 
     companion object {
-        val instance by lazy { MovieRepository() }
+        private const val NETWORK_PAGE_SIZE = 50
+//        val instance by lazy { MovieRepository() }
     }
 }
