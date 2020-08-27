@@ -25,14 +25,14 @@ class TvViewModelTest {
     var rule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var tvRepository:TvRepository
-    private lateinit var tvViewModel:TvViewModel
-    private var tvSet= mutableListOf<TvShow>()
+    private lateinit var tvRepository: TvRepository
+    private lateinit var tvViewModel: TvViewModel
+    private var tvSet = mutableListOf<TvShow>()
 
     @Before
-    fun init(){
+    fun init() {
         MockitoAnnotations.initMocks(this)
-        tvViewModel= TvViewModel(tvRepository)
+        tvViewModel = TvViewModel(tvRepository)
         Dispatchers.setMain(Dispatchers.Unconfined)
     }
 
@@ -55,7 +55,7 @@ class TvViewModelTest {
         runBlocking {
             `when`(tvRepository.paginationSets()).thenReturn(null)
             `when`(tvRepository.loadPage()).thenReturn(tvSet)
-            tvViewModel.listScrolled(1,1,2)
+            tvViewModel.listScrolled(1, 1, 2)
             val state = tvViewModel.viewState.value!!
             assertFalse(state.loading)
             assertNull(state.error)

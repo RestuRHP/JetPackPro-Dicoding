@@ -29,6 +29,8 @@
                 android:id="@+id/rv_movies"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                tools:itemCount="10"
+                tools:listitem="@layout/item_movie"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
             </androidx.recyclerview.widget.RecyclerView>
@@ -36,5 +38,21 @@
         </FrameLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <!--    <include-->
+    <!--        layout="@layout/load_more"-->
+    <!--        />-->
+    <TextView
+        android:id="@+id/tv_loadmore_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/load_more_message"
+        android:textStyle="italic|bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/swapRefresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/swapRefresh" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

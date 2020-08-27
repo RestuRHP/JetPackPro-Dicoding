@@ -17,6 +17,7 @@ class MovieRepositoryTest {
 
     @Mock
     var localStore: MovieDataStore? = null
+
     @Mock
     var remoteStore: MovieDataStore? = null
     var movieRepository: MovieRepository? = null

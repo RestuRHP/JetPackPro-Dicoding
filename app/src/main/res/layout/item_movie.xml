@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
@@ -28,7 +29,8 @@
                 android:layout_width="95dp"
                 android:layout_height="140dp"
                 android:contentDescription="@string/image_poster"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                tools:srcCompat="@tools:sample/avatars" />
 
         </androidx.cardview.widget.CardView>
 

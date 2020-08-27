@@ -10,7 +10,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito
+import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 
 class TvRepositoryTest {
@@ -35,11 +35,24 @@ class TvRepositoryTest {
     fun getSets() {
         tvSet.addAll(Dummy.generateDummyTvShows())
         runBlocking {
-            Mockito.`when`(localStore?.getSets(1)).thenReturn(tvSet)
+            `when`(localStore?.getSets(1)).thenReturn(tvSet)
             val tv = tvRepository?.getSets()
             verify(localStore)?.getSets(1)
             assertNotNull(tv)
             assertEquals(tv?.get(0)?.title, "Law & Order: Special Victims Unit")
+        }
+    }
+
+    @Test
+    fun throwEx() {
+        runBlocking {
+            `when`(localStore?.getSets(1)).thenReturn(null)
+            `when`(remoteStore?.getSets(1)).thenReturn(null)
+            try {
+                tvRepository?.getSets()
+            } catch (ex: Exception) {
+
+            }
         }
     }
 }

@@ -8,17 +8,13 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface Api {
-    @GET("discover/movie")
+    @GET("discover/movie?api_key=${BuildConfig.API_KEY}&language=en-US")
     suspend fun getMovies(
-        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
-        @Query("language") language: String = "en-US",
         @Query("page") page: Int?
     ): Response<MovieResponse>
 
-    @GET("discover/tv")
+    @GET("discover/tv?api_key=${BuildConfig.API_KEY}&language=en-US")
     suspend fun getTv(
-        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
-        @Query("language") language: String = "en-US",
         @Query("page") page: Int
     ): Response<TvResponse>
 }

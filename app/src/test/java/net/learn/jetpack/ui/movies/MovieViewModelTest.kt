@@ -57,7 +57,7 @@ class MovieViewModelTest {
         runBlocking {
             `when`(movieRepository.paginationSets()).thenReturn(null)
             `when`(movieRepository.loadPage()).thenReturn(movieSet)
-            movieViewModel.listScrolled(1,1,2)
+            movieViewModel.listScrolled(1, 1, 2)
             val state = movieViewModel.viewState.value!!
             assertFalse(state.loading)
             assertNull(state.error)
