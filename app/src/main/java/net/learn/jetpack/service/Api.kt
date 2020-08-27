@@ -11,7 +11,7 @@ interface Api {
     @GET("discover/movie?api_key=${BuildConfig.API_KEY}&language=en-US")
     suspend fun getMovies(
         @Query("page") page: Int?
-    ): Response<MovieResponse>
+    ): MovieResponse
 
     @GET("discover/tv?api_key=${BuildConfig.API_KEY}&language=en-US")
     suspend fun getTv(

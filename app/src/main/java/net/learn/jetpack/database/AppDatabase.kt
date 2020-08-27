@@ -11,6 +11,7 @@ import net.learn.jetpack.model.tv.TvShow
 abstract class AppDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
     abstract fun tvDao(): TvDao
+    abstract fun remoteKeysMovieDao(): RemoteKeysMovieDao
 
     companion object {
         private var instance: AppDatabase? = null
