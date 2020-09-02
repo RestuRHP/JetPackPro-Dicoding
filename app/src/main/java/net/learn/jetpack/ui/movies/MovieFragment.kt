@@ -40,9 +40,6 @@ class MovieFragment : Fragment() {
         vm = ViewModelProvider(this, Injection.provideViewModelFactory(context))
             .get(MovieViewModel::class.java)
 
-//        val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-//        rv_movies.addItemDecoration(decoration)
-
         initAdapter()
         getSets()
         initSwipeRefresh()
@@ -80,14 +77,6 @@ class MovieFragment : Fragment() {
                 .filter { it.prepend is LoadState.NotLoading }
                 .collect { rv_movies.scrollToPosition(0) }
         }
-//        lifecycleScope.launchWhenCreated {
-//            adapter.loadStateFlow
-//                // Only emit when REFRESH LoadState for RemoteMediator changes.
-//                .distinctUntilChangedBy { it.refresh }
-//                // Only react to cases where Remote REFRESH completes i.e., NotLoading.
-//                .filter { it.refresh is LoadState.NotLoading }
-//                .collect { rv_movies.scrollToPosition(0) }
-//        }
         rv_movies.setHasFixedSize(true)
     }
 
