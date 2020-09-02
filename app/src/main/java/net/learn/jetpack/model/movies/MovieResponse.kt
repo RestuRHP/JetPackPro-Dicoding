@@ -6,9 +6,9 @@ import net.learn.jetpack.model.movies.Movie
 
 data class MovieResponse(
     @SerializedName("page")
-    var page: Int,
+    val page: Int = 0,
     @SerializedName("results")
-    var results: MutableList<Movie>
+    val results: List<Movie> = emptyList()
 //    ,
 //    @SerializedName("total_pages")
 //    var totalPages: Int

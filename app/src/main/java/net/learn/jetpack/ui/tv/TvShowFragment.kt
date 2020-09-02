@@ -41,7 +41,7 @@ class TvShowFragment : Fragment() {
             TvListFactory(TvRepository.instance)
         vm = ViewModelProvider(this, factory).get(TvViewModel::class.java).apply {
             viewState.observe(viewLifecycleOwner, Observer(this@TvShowFragment::handleState))
-            swapRefresh.setOnRefreshListener { getSets() }
+//            swapRefresh.setOnRefreshListener { getSets() }
         }
 
         setupScrollListener()
@@ -50,7 +50,7 @@ class TvShowFragment : Fragment() {
     private fun handleState(viewState: BaseViewState<TvShow>?) {
         viewState?.let {
             toggleLoading(it.loading)
-            it.data?.let { data -> showData(data) }
+//            it.data?.let { data -> showData(data) }
             it.error?.let { error -> showError(error) }
         }
     }
@@ -65,7 +65,7 @@ class TvShowFragment : Fragment() {
     }
 
     private fun toggleLoading(loading: Boolean) {
-        swapRefresh.isRefreshing = loading
+//        swapRefresh.isRefreshing = loading
     }
 
     private fun setupScrollListener() {

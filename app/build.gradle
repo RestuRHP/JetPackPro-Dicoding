@@ -23,12 +23,17 @@ def getProperty(String filename, String propName) {
 }
 
 android {
+
     testOptions {
         unitTests.returnDefaultValues = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
     }
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
@@ -58,6 +63,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -65,65 +75,61 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.3.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
 
-    //paging library
-    implementation 'androidx.paging:paging-runtime:2.1.2'
+//    //paging library
+//    implementation 'androidx.paging:paging-runtime:2.1.2'
 
     // Kotlin components
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 
-    // Material design
-    implementation "androidx.paging:paging-runtime:$pagingVersion"
-
     // Lifecycle components
+    implementation 'com.google.android.material:material:1.2.0'
+    implementation "androidx.core:core-ktx:$coreVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
-//    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-viewmodel:$archLifecycleVersion"
-    implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$archLifecycleVersion"
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit-mock:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpLoggingInterceptorVersion"
 
     // Room components
     implementation "androidx.room:room-runtime:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.github.florent37:glidepalette:2.1.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
     implementation 'com.google.code.gson:gson:2.8.6'
-
-
-    implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
-
-    // Core library
-    androidTestImplementation 'androidx.test:core:1.2.0'
-
-    // AndroidJUnitRunner and JUnit Rules
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test:rules:1.2.0'
 
     implementation 'androidx.palette:palette:1.0.0'
 
 
-//    // RxJava
-//    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
-//    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
-
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:core:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    testImplementation "androidx.paging:paging-common:$pagingVersion"
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.5'
     testImplementation 'com.squareup.okhttp3:mockwebserver:4.8.0'
     testImplementation 'junit:junit:4.13'
     testImplementation "androidx.arch.core:core-testing:2.1.0"
-    testImplementation 'org.mockito:mockito-core:2.25.0'
+    testImplementation 'org.mockito:mockito-core:3.0.0'
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
 
 }

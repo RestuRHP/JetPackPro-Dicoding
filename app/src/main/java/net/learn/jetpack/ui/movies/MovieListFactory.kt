@@ -9,7 +9,7 @@ class MovieListFactory(private val movieRepository: MovieRepository) : ViewModel
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MovieViewModel::class.java))
             return MovieViewModel(movieRepository) as T
-        throw IllegalArgumentException()
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 
 }

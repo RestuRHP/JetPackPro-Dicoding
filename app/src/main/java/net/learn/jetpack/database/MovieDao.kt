@@ -9,7 +9,7 @@ import net.learn.jetpack.model.movies.Movie
 
 @Dao
 interface MovieDao {
-    @Query("SELECT * FROM Movie ORDER BY VID ASC")
+    @Query("SELECT * FROM Movie ORDER BY voteCount DESC")
     fun getAll(): PagingSource<Int, Movie>
 
     @Query("DELETE FROM Movie")

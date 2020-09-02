@@ -28,7 +28,7 @@ class TvViewModel(private val tvSet: TvRepository) : ViewModel() {
     fun getSets() = viewModelScope.launch {
         try {
             val data = tvSet.getSets()
-            mViewState.value = mViewState.value?.copy(loading = false, error = null, data = data)
+//            mViewState.value = mViewState.value?.copy(loading = false, error = null, data = data)
         } catch (ex: Exception) {
             mViewState.value = mViewState.value?.copy(loading = false, error = ex, data = null)
         }
@@ -40,8 +40,8 @@ class TvViewModel(private val tvSet: TvRepository) : ViewModel() {
                 try {
                     tvSet.paginationSets()
                     val data = tvSet.loadPage()
-                    mViewState.value =
-                        mViewState.value?.copy(loading = false, error = null, data = data)
+//                    mViewState.value =
+//                        mViewState.value?.copy(loading = false, error = null, data = data)
                 } catch (ex: Exception) {
                     mViewState.value =
                         mViewState.value?.copy(loading = false, error = ex, data = null)
