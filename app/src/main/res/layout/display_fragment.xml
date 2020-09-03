@@ -9,38 +9,22 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swapRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/tv_loadmore_message">
 
-        <FrameLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_movies"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:spanCount="2"
+            tools:itemCount="6"
+            tools:listitem="@layout/item_movie">
 
-            <ProgressBar
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/rv_movies"
-                app:layout_constraintEnd_toEndOf="@+id/rv_movies"
-                app:layout_constraintStart_toStartOf="@+id/rv_movies"
-                app:layout_constraintTop_toTopOf="@+id/rv_movies" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_movies"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:itemCount="10"
-                tools:listitem="@layout/item_movie"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-        </FrameLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    <!--    <include-->
-    <!--        layout="@layout/load_more"-->
-    <!--        />-->
+
     <TextView
         android:id="@+id/tv_loadmore_message"
         android:layout_width="0dp"
@@ -50,8 +34,8 @@
         android:padding="5dp"
         android:text="@string/load_more_message"
         android:textStyle="italic|bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/swapRefresh"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/swapRefresh" />
 

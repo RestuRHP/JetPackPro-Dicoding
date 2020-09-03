@@ -10,7 +10,6 @@ object Dummy {
 
         listItem.add(
             Movie(
-                VID = null,
                 id = 1,
                 backdropPath = "m0ObOaJBerZ3Unc74l471ar8Iiy.jpg",
                 originalLanguage = "en",
@@ -18,12 +17,12 @@ object Dummy {
                 posterPath = "cjr4NWURcVN3gW5FlHeabgBHLrY.jpg",
                 releaseDate = "2020-07-10",
                 title = "The Old Guard",
-                voteAverage = 7.4
+                voteAverage = 7.4,
+                voteCount = 1
             )
         )
         listItem.add(
             Movie(
-                VID = null,
                 id = 2,
                 backdropPath = "xXBnM6uSTk6qqCf0SRZKXcga9Ba.jpg",
                 originalLanguage = "en",
@@ -31,12 +30,12 @@ object Dummy {
                 posterPath = "kjMbDciooTbJPofVXgAoFjfX8Of.jpg",
                 releaseDate = "2020-07-10",
                 title = "Greyhound",
-                voteAverage = 6.5
+                voteAverage = 6.5,
+                voteCount = 2
             )
         )
         listItem.add(
             Movie(
-                VID = null,
                 id = 3,
                 backdropPath = "AeDS2MKGFy6QcjgWbJBde0Ga6Hd.jpg",
                 originalLanguage = "en",
@@ -44,12 +43,12 @@ object Dummy {
                 posterPath = "xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg",
                 releaseDate = "2019-09-17",
                 title = "Ad Astra",
-                voteAverage = 6.1
+                voteAverage = 6.1,
+                voteCount = 3
             )
         )
         listItem.add(
             Movie(
-                VID = null,
                 id = 4,
                 backdropPath = "lMbUiOZh8wELqY63v3ou54yTvEG.jpg",
                 originalLanguage = "en",
@@ -57,12 +56,12 @@ object Dummy {
                 posterPath = "f4EAJ6PXNbxBb2xrdTrT2SlJlCH.jpg",
                 releaseDate = "2020-07-16",
                 title = "Fatal Affair",
-                voteAverage = 5.0
+                voteAverage = 5.0,
+                voteCount = 4
             )
         )
         listItem.add(
             Movie(
-                VID = null,
                 id = 5,
                 backdropPath = "d7JUXVvjvVCXWs1mlpyO5ESdWdT.jpg",
                 originalLanguage = "en",
@@ -70,12 +69,12 @@ object Dummy {
                 posterPath = "yf5IuMW6GHghu39kxA0oFx7Bxmj.jpg",
                 releaseDate = "2020-01-26",
                 title = "Palm Springs",
-                voteAverage = 7.7
+                voteAverage = 7.7,
+                voteCount = 5
             )
         )
         listItem.add(
             Movie(
-                VID = null,
                 id = 6,
                 backdropPath = "n1RohH2VoK1CdVI2fXvcP19dSlm.jpg",
                 originalLanguage = "en",
@@ -83,12 +82,12 @@ object Dummy {
                 posterPath = "hPkqY2EMqWUnFEoedukilIUieVG.jpg",
                 releaseDate = "2020-06-24",
                 title = "The Outpost",
-                voteAverage = 6.9
+                voteAverage = 6.9,
+                voteCount = 6
             )
         )
         listItem.add(
             Movie(
-                VID = null,
                 id = 7,
                 backdropPath = "n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
                 originalLanguage = "en",
@@ -96,12 +95,12 @@ object Dummy {
                 posterPath = "udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
                 releaseDate = "2019-10-02",
                 title = "Joker",
-                voteAverage = 8.2
+                voteAverage = 8.2,
+                voteCount = 7
             )
         )
         listItem.add(
             Movie(
-                VID = null,
                 id = 8,
                 backdropPath = "9xNOiv6DZZjH7ABoUUDP0ZynouU.jpg",
                 originalLanguage = "en",
@@ -109,12 +108,12 @@ object Dummy {
                 posterPath = "h4VB6m0RwcicVEZvzftYZyKXs6K.jpg",
                 releaseDate = "2020-02-05",
                 title = "Birds of Prey (and the Fantabulous Emancipation of One Harley Quinn)",
-                voteAverage = 7.2
+                voteAverage = 7.2,
+                voteCount = 8
             )
         )
         listItem.add(
             Movie(
-                VID = null,
                 id = 9,
                 backdropPath = "rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
                 originalLanguage = "en",
@@ -122,12 +121,12 @@ object Dummy {
                 posterPath = "gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
                 releaseDate = "2014-11-05",
                 title = "Interstellar",
-                voteAverage = 8.3
+                voteAverage = 8.3,
+                voteCount = 9
             )
         )
         listItem.add(
             Movie(
-                VID = null,
                 id = 10,
                 backdropPath = "8IjnyGbzcX5Ulb4kXLnecgWDEYA.jpg",
                 originalLanguage = "en",
@@ -135,7 +134,8 @@ object Dummy {
                 posterPath = "7AIU4rH3ExBHQg92UHYxFYxP82M.jpg",
                 releaseDate = "2020-07-17",
                 title = "Father Soldier Son",
-                voteAverage = 5.3
+                voteAverage = 5.3,
+                voteCount = 10
             )
         )
         return listItem

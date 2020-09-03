@@ -1,6 +1,5 @@
-package net.learn.jetpack.datastore.pagination
+package net.learn.jetpack.repository.movie
 
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -10,20 +9,18 @@ import net.learn.jetpack.database.AppDatabase
 import net.learn.jetpack.database.RemoteKeysMovie
 import net.learn.jetpack.model.movies.Movie
 import net.learn.jetpack.service.Api
-import net.learn.jetpack.ui.BaseViewState
+import net.learn.jetpack.utils.EspressoIdlingResource
 import retrofit2.HttpException
 import java.io.IOException
-import java.io.InvalidObjectException
 
 private const val STARTING_PAGE_INDEX = 1
 
 @OptIn(ExperimentalPagingApi::class)
 class PageDataSource(
-    private val remoteStore: Api,
+    private val service: Api,
     private val appDatabase: AppDatabase
 ) : RemoteMediator<Int, Movie>() {
 
-    private val viewState = MutableLiveData<BaseViewState<Movie>>()
     override suspend fun load(loadType: LoadType, state: PagingState<Int, Movie>): MediatorResult {
         val page = when (loadType) {
             LoadType.REFRESH -> {
@@ -32,26 +29,18 @@ class PageDataSource(
             }
             LoadType.PREPEND -> {
                 val remoteKeysMovie = getFirstItem(state)
-                if (remoteKeysMovie == null) {
-                    throw InvalidObjectException("Remote key and the prevKey should not be null")
-                }
-                val prevKey = remoteKeysMovie.prevKey
-                if (prevKey == null) {
-                    return MediatorResult.Success(endOfPaginationReached = true)
-                }
-                remoteKeysMovie.prevKey
+                remoteKeysMovie?.prevKey
+                    ?: return MediatorResult.Success(endOfPaginationReached = true)
             }
             LoadType.APPEND -> {
-                val remoteKeysMovie = getFirstItem(state)
-                if (remoteKeysMovie == null || remoteKeysMovie.nextKey == null) {
-                    throw InvalidObjectException("Remote key should not be null for $loadType")
-                }
-                remoteKeysMovie.nextKey
+                val remoteKeysMovie = getLastItem(state)
+                remoteKeysMovie?.nextKey
             }
         }
 
+        EspressoIdlingResource.increment()
         try {
-            val apiResponse = remoteStore.getMovies(STARTING_PAGE_INDEX)
+            val apiResponse = service.getMovies(page)
             val movie = apiResponse.results
             val endOfPaginationReached = movie.isEmpty()
 
@@ -60,18 +49,21 @@ class PageDataSource(
                     appDatabase.remoteKeysMovieDao().clearRemoteKeys()
                     appDatabase.movieDao().deleteAll()
                 }
-                val prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1
-                val nextKey = if (endOfPaginationReached) null else page + 1
+                val prevKey = if (page == STARTING_PAGE_INDEX) null else page?.minus(1)
+                val nextKey = if (endOfPaginationReached) null else page?.plus(1)
                 val key = movie.map {
                     RemoteKeysMovie(movie_id = it.id, prevKey = prevKey, nextKey = nextKey)
                 }
                 appDatabase.remoteKeysMovieDao().insertAll(key)
                 appDatabase.movieDao().insertAll(movie)
             }
+            EspressoIdlingResource.decrement()
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (exception: IOException) {
+            EspressoIdlingResource.decrement()
             return MediatorResult.Error(exception)
         } catch (exception: HttpException) {
+            EspressoIdlingResource.decrement()
             return MediatorResult.Error(exception)
         }
     }
@@ -92,8 +84,8 @@ class PageDataSource(
 
     private suspend fun getClosestToCurrentPosition(state: PagingState<Int, Movie>): RemoteKeysMovie? {
         return state.anchorPosition?.let { position ->
-            state.closestItemToPosition(position)?.id.let { movieId ->
-                appDatabase.remoteKeysMovieDao().remoteKeysMovieId(movieId!!)
+            state.closestItemToPosition(position)?.id?.let { movieId ->
+                appDatabase.remoteKeysMovieDao().remoteKeysMovieId(movieId)
             }
         }
     }

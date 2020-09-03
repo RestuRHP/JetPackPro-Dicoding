@@ -2,7 +2,7 @@ package net.learn.jetpack.ui.tv
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import net.learn.jetpack.repository.TvRepository
+import net.learn.jetpack.repository.tv.TvRepository
 
 @Suppress("UNCHECKED_CAST")
 class TvListFactory(private val tvRepository: TvRepository) : ViewModelProvider.Factory {

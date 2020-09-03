@@ -6,7 +6,7 @@
     <string name="time">release</string>
     <string name="overview">Overview</string>
     <string name="image_rating">Image Rating</string>
-    <string name="rating">Rating</string>
+    <string name="rating">10</string>
     <string name="image_lang">Image Language</string>
     <string name="language">Language</string>
     <string name="image_poster">Image Poster</string>
@@ -14,4 +14,7 @@
     <string name="image_white">Line Image</string>
     <string name="lorem">-</string>
     <string name="load_more_message">waiting</string>
+    <string name="tv_title">Birds of Prey (and the Fantabulous Emancipation of One Harley Quinn)</string>
+    <string name="retry">retry</string>
+    <string name="favorite">Favorite</string>
 </resources>

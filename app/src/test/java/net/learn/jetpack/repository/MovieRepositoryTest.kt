@@ -1,45 +1,60 @@
 package net.learn.jetpack.repository
 
-import com.nhaarman.mockitokotlin2.verify
+import androidx.paging.PagingData
+import com.nhaarman.mockitokotlin2.mock
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
-import net.learn.jetpack.datastore.movies.MovieDataStore
+import net.learn.jetpack.database.AppDatabase
 import net.learn.jetpack.model.movies.Movie
-import net.learn.jetpack.utils.Dummy
-import org.junit.Assert.assertEquals
+import net.learn.jetpack.repository.movie.MovieRepository
+import net.learn.jetpack.service.Api
+import net.learn.jetpack.ui.movies.MovieAdapter
 import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
 class MovieRepositoryTest {
 
     @Mock
-    var localStore: MovieDataStore? = null
-
-    @Mock
-    var remoteStore: MovieDataStore? = null
     var movieRepository: MovieRepository? = null
-    var movieSet = mutableListOf<Movie>()
+    private lateinit var adapter: MovieAdapter
+    val service = mock<Api>()
+    val database = mock<AppDatabase>()
+    private var movie: Flow<PagingData<Movie>>? = null
 
     @Before
     fun init() {
         MockitoAnnotations.initMocks(this)
-        movieRepository = MovieRepository.instance.apply {
-            init(localStore!!, remoteStore!!)
-        }
+        movieRepository = MovieRepository(service, database)
     }
 
     @Test
     fun getSets() {
-        movieSet.addAll(Dummy.generateDummyMovies())
+        val mov = Movie(
+            1,
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            0.0,
+            1,
+            false
+        )
+        adapter = MovieAdapter()
         runBlocking {
-            Mockito.`when`(localStore?.getSets(1)).thenReturn(movieSet)
-            val movies = movieRepository?.getSets()
-            verify(localStore)?.getSets(1)
-            assertNotNull(movies)
-            assertEquals(movies?.get(0)?.title, "The Old Guard")
+            val pageSource = { database.movieDao().getAll() }
+            movie = movieRepository?.getMovie()
+
+            movie?.collect { it ->
+
+            }
+
+            assertNotNull(movie)
         }
     }
 }
