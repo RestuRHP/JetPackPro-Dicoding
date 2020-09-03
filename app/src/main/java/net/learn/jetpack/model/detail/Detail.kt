@@ -8,8 +8,6 @@ data class Detail(
     var adult: Boolean,
     @SerializedName("backdrop_path")
     var backdropPath: String,
-    @SerializedName("belongs_to_collection")
-    var belongsToCollection: BelongsToCollection,
     @SerializedName("budget")
     var budget: Int,
     @SerializedName("genres")
@@ -30,18 +28,12 @@ data class Detail(
     var popularity: Double,
     @SerializedName("poster_path")
     var posterPath: String,
-    @SerializedName("production_companies")
-    var productionCompanies: List<ProductionCompany>,
-    @SerializedName("production_countries")
-    var productionCountries: List<ProductionCountry>,
     @SerializedName("release_date")
     var releaseDate: String,
     @SerializedName("revenue")
     var revenue: Int,
     @SerializedName("runtime")
     var runtime: Int,
-    @SerializedName("spoken_languages")
-    var spokenLanguages: List<SpokenLanguage>,
     @SerializedName("status")
     var status: String,
     @SerializedName("tagline")

@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.setMain
 import net.learn.jetpack.model.movies.Movie
-import net.learn.jetpack.repository.MovieRepository
+import net.learn.jetpack.repository.movie.MovieRepository
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

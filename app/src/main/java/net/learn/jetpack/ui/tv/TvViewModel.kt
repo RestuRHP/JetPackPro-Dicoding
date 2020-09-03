@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import net.learn.jetpack.model.tv.TvShow
-import net.learn.jetpack.repository.TvRepository
+import net.learn.jetpack.repository.tv.TvRepository
 import net.learn.jetpack.ui.BaseViewState
 
 class TvViewModel(private val tvSet: TvRepository) : ViewModel() {

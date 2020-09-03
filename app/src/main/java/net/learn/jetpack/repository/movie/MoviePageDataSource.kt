@@ -1,4 +1,4 @@
-package net.learn.jetpack.datastore.pagination
+package net.learn.jetpack.repository.movie
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType

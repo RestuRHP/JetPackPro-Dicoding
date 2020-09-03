@@ -2,7 +2,7 @@ package net.learn.jetpack.ui.movies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import net.learn.jetpack.repository.MovieRepository
+import net.learn.jetpack.repository.movie.MovieRepository
 
 @Suppress("UNCHECKED_CAST")
 class MovieListFactory(private val movieRepository: MovieRepository) : ViewModelProvider.Factory {

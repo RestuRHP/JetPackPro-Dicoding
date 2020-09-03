@@ -1,8 +1,9 @@
-package net.learn.jetpack.repository
+package net.learn.jetpack.repository.tv
 
 import android.util.Log
 import net.learn.jetpack.datastore.tv.TvDataStore
 import net.learn.jetpack.model.tv.TvShow
+import net.learn.jetpack.repository.BaseRepository
 
 private const val TV_STARTING_PAGE_INDEX = 1
 

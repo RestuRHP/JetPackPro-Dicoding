@@ -1,11 +1,10 @@
-package net.learn.jetpack.repository
+package net.learn.jetpack.repository.movie
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import net.learn.jetpack.database.AppDatabase
-import net.learn.jetpack.datastore.pagination.PageDataSource
 import net.learn.jetpack.model.movies.Movie
 import net.learn.jetpack.service.Api
 

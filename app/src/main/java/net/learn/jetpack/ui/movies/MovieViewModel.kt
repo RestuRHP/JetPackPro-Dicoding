@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.Flow
 import net.learn.jetpack.model.movies.Movie
-import net.learn.jetpack.repository.MovieRepository
+import net.learn.jetpack.repository.movie.MovieRepository
 
 class MovieViewModel(private val movieSet: MovieRepository) : ViewModel() {
 

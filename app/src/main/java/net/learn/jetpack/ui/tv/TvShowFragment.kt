@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.display_fragment.*
 import net.learn.jetpack.R
 import net.learn.jetpack.model.tv.TvShow
-import net.learn.jetpack.repository.TvRepository
+import net.learn.jetpack.repository.tv.TvRepository
 import net.learn.jetpack.ui.BaseViewState
 
 class TvShowFragment : Fragment() {

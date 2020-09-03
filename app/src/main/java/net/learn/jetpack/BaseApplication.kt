@@ -4,7 +4,7 @@ import android.app.Application
 import net.learn.jetpack.database.AppDatabase
 import net.learn.jetpack.datastore.tv.TvRemoteStore
 import net.learn.jetpack.datastore.tv.TvRoomStore
-import net.learn.jetpack.repository.TvRepository
+import net.learn.jetpack.repository.tv.TvRepository
 import net.learn.jetpack.service.Retrofit
 
 class BaseApplication : Application() {
