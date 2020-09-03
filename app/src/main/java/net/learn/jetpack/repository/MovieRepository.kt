@@ -22,6 +22,6 @@ class MovieRepository(private val service: Api, private val database: AppDatabas
     }
 
     companion object {
-        private const val NETWORK_PAGE_SIZE = 5
+        private const val NETWORK_PAGE_SIZE = 10
     }
 }

@@ -71,11 +71,9 @@ class MovieFragment : Fragment() {
 
         lifecycleScope.launchWhenCreated {
             adapter.loadStateFlow
-                // Only emit when PREPEND LoadState for RemoteMediator changes.
-                .distinctUntilChangedBy { it.refresh }
-                // Only react to cases where Remote PREPEND completes i.e., NotLoading.
-                .filter { it.prepend is LoadState.NotLoading }
-                .collect { rv_movies.scrollToPosition(0) }
+                .distinctUntilChangedBy { it.prepend }
+                .filter { it.prepend is LoadState.Loading }
+                .collect { rv_movies.smoothScrollToPosition(0) }
         }
         rv_movies.setHasFixedSize(true)
     }
