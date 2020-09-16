@@ -2,9 +2,10 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail.DetailActivity">
+    tools:context=".ui.detail.movie.DetailMovieActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -16,16 +17,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:gravity="center"
             app:contentScrim="@color/colorPrimary"
             app:expandedTitleMarginBottom="8dp"
             app:expandedTitleMarginStart="16dp"
-            android:gravity="center"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/backdrop_image"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="300dp"
                 android:contentDescription="@string/image_poster"
                 android:scaleType="centerCrop"
                 android:src="@drawable/backdrop" />
@@ -35,7 +36,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark"
-                app:layout_collapseMode="pin" />
+                app:layout_collapseMode="pin">
+
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -50,6 +53,20 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/ivTheaterFavorite"-->
+            <!--                android:layout_width="30dp"-->
+            <!--                android:layout_height="30dp"-->
+            <!--                android:layout_marginTop="8dp"-->
+            <!--                android:layout_marginEnd="16dp"-->
+            <!--                android:layout_marginRight="16dp"-->
+            <!--                android:clickable="true"-->
+            <!--                android:contentDescription="@string/text_favorite_icon"-->
+            <!--                android:focusable="true"-->
+            <!--                android:src="@drawable/ic_unFavorite"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <TextView
                 android:id="@+id/tv_release"
@@ -87,9 +104,7 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/rs"
                 app:layout_constraintStart_toEndOf="@+id/rs"
-                app:layout_constraintTop_toTopOf="@+id/rs">
-
-            </TextView>
+                app:layout_constraintTop_toTopOf="@+id/rs" />
 
             <ImageView
                 android:id="@+id/ry"
@@ -101,9 +116,7 @@
                 android:src="@drawable/ic_language"
                 app:layout_constraintBottom_toBottomOf="@+id/rs"
                 app:layout_constraintStart_toEndOf="@+id/tv_rating"
-                app:layout_constraintTop_toTopOf="@+id/rs">
-
-            </ImageView>
+                app:layout_constraintTop_toTopOf="@+id/rs" />
 
             <TextView
                 android:id="@+id/tv_language"
@@ -115,9 +128,7 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/ry"
                 app:layout_constraintStart_toEndOf="@+id/ry"
-                app:layout_constraintTop_toTopOf="@+id/ry">
-
-            </TextView>
+                app:layout_constraintTop_toTopOf="@+id/ry" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -131,9 +142,7 @@
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rs">
-
-            </ImageView>
+                app:layout_constraintTop_toBottomOf="@+id/rs" />
 
             <TextView
                 android:id="@+id/textView"
@@ -143,12 +152,11 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/overview"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView">
-
-            </TextView>
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             <TextView
                 android:id="@+id/tv_overview"
@@ -161,12 +169,78 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-            </TextView>
+            <TextView
+                android:id="@+id/tvMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/more_like_this"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_overview" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_similar"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvMore"
+                app:spanCount="2"
+                tools:itemCount="6"
+                tools:listitem="@layout/item" />
+
+            <ProgressBar
+                android:id="@+id/pBDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvMore" />
+
+            <include
+                android:id="@+id/layout_warning"
+                layout="@layout/layout_warning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/rv_similar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rv_similar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ivTheaterFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_unfavorite"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_anchor="@id/collapsing"
+        app:layout_anchorGravity="bottom|end" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

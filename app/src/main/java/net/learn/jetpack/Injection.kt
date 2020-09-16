@@ -1,19 +1,19 @@
 package net.learn.jetpack
 
-import android.content.Context
-import androidx.lifecycle.ViewModelProvider
-import net.learn.jetpack.database.AppDatabase
-import net.learn.jetpack.repository.movie.MovieRepository
-import net.learn.jetpack.service.Retrofit
-import net.learn.jetpack.ui.movies.MovieListFactory
+import net.learn.jetpack.data.network.Api
+import net.learn.jetpack.data.network.Client
 
 object Injection {
 
-    private fun provideMovieRepository(context: Context?): MovieRepository {
-        return MovieRepository(Retrofit.create(), AppDatabase.getInstance(context))
-    }
+//    fun provideDetailMovie(context: Context): DetailRepository {
+//        val database = AppDatabase.getInstance(context)
+//        return DetailRepository(database.movieDao())
+//    }
 
-    fun provideViewModelFactory(context: Context?): ViewModelProvider.Factory {
-        return MovieListFactory(provideMovieRepository(context))
-    }
+    private fun provideNetworkService(): Api = Client.create()
+
+//    fun fixProvideDetail(context: Context):DetailRepository{
+//        val db = AppDatabase.getInstance(context)
+//        return DetailRepository.getInstance(db)
+//    }
 }
