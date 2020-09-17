@@ -1,6 +1,5 @@
 package net.learn.jetpack.ui.detail.movie
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,11 +40,11 @@ class MovieDetailAdapter : RecyclerView.Adapter<MovieDetailAdapter.ViewHolder>()
                     )
                     .dontAnimate()
                     .into(img_poster)
-                itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailMovieActivity::class.java)
-                    intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, items)
-                    itemView.context.startActivity(intent)
-                }
+//                itemView.setOnClickListener {
+//                    val intent = Intent(itemView.context, DetailMovieActivity::class.java)
+//                    intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, items)
+//                    itemView.context.startActivity(intent)
+//                }
             }
         }
     }

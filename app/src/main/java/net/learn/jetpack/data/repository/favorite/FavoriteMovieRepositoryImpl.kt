@@ -5,16 +5,16 @@ import androidx.paging.PagedList
 import net.learn.jetpack.data.model.movies.Movie
 import net.learn.jetpack.data.repository.Favorite
 
-interface FavoriteRepository {
+interface FavoriteMovieRepository {
     suspend fun getFavoriteMovie(): LiveData<PagedList<Movie>>?
 }
 
-class FavoriteRepositoryImpl private constructor() :
-    FavoriteRepository, Favorite<Movie>() {
+class FavoriteMovieRepositoryImpl private constructor() :
+    FavoriteMovieRepository, Favorite<Movie>() {
     override suspend fun getFavoriteMovie(): LiveData<PagedList<Movie>>? =
         roomStore?.getAllFavorite()
 
     companion object {
-        val instance by lazy { FavoriteRepositoryImpl() }
+        val instance by lazy { FavoriteMovieRepositoryImpl() }
     }
 }

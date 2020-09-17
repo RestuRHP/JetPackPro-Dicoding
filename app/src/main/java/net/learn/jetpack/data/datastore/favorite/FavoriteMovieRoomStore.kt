@@ -6,13 +6,11 @@ import androidx.paging.PagedList
 import net.learn.jetpack.data.database.AppDatabase
 import net.learn.jetpack.data.model.movies.Movie
 
-class FavoriteRoomStore(private val database: AppDatabase) : FavoriteRoomDataStore<Movie> {
+class FavoriteMovieRoomStore(private val database: AppDatabase) : FavoriteRoomDataStore<Movie> {
 
     override suspend fun getAllFavorite(): LiveData<PagedList<Movie>> {
         val config = PagedList.Config.Builder()
-            .setEnablePlaceholders(false)
-            .setInitialLoadSizeHint(4)
-            .setPageSize(6)
+            .setPageSize(10)
             .build()
         return LivePagedListBuilder(database.movieDao().getAllFavoriteMovie(true), config).build()
     }

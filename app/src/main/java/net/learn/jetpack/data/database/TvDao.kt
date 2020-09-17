@@ -1,5 +1,6 @@
 package net.learn.jetpack.data.database
 
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -33,5 +34,5 @@ interface TvDao {
     suspend fun tvIsFavorite(fvBool: Boolean, tvId: Int): MutableList<TvShow>
 
     @Query(GET_ALL_TV_IS_FAVORITE)
-    suspend fun getAllFavoriteTv(fvBool: Boolean): MutableList<TvShow>
+    fun getAllFavoriteTv(fvBool: Boolean): DataSource.Factory<Int, TvShow>
 }

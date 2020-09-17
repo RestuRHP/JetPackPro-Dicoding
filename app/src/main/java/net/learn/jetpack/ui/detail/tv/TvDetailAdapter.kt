@@ -1,6 +1,5 @@
 package net.learn.jetpack.ui.detail.tv
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,6 @@ import kotlinx.android.synthetic.main.item.view.*
 import net.learn.jetpack.BuildConfig
 import net.learn.jetpack.R
 import net.learn.jetpack.data.model.tv.TvShow
-import net.learn.jetpack.ui.detail.movie.DetailMovieActivity
 
 class TvDetailAdapter : RecyclerView.Adapter<TvDetailAdapter.ViewHolder>() {
     private val tvItems = mutableListOf<TvShow>()
@@ -41,11 +39,11 @@ class TvDetailAdapter : RecyclerView.Adapter<TvDetailAdapter.ViewHolder>() {
                     )
                     .dontAnimate()
                     .into(img_poster)
-                itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailMovieActivity::class.java)
-                    intent.putExtra(DetailTvActivity.EXTRA_TV, items)
-                    itemView.context.startActivity(intent)
-                }
+//                itemView.setOnClickListener {
+//                    val intent = Intent(itemView.context, DetailMovieActivity::class.java)
+//                    intent.putExtra(DetailTvActivity.EXTRA_TV, items)
+//                    itemView.context.startActivity(intent)
+//                }
             }
         }
     }

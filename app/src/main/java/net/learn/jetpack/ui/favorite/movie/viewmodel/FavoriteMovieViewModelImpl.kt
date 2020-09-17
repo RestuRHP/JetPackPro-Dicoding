@@ -1,18 +1,18 @@
-package net.learn.jetpack.ui.favorite.viewmodel
+package net.learn.jetpack.ui.favorite.movie.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import net.learn.jetpack.data.model.movies.Movie
-import net.learn.jetpack.data.repository.favorite.FavoriteRepositoryImpl
+import net.learn.jetpack.data.repository.favorite.FavoriteMovieRepositoryImpl
 
 
 interface FavoriteMovieViewModel {
     suspend fun getFavoriteMovie()
 }
 
-class FavoriteMovieViewModelImpl(private val repository: FavoriteRepositoryImpl) :
+class FavoriteMovieViewModelImpl(private val repository: FavoriteMovieRepositoryImpl) :
     FavoriteMovieViewModel, ViewModel() {
 
     private val _state = MutableLiveData<FavoriteMovieState>()
@@ -33,9 +33,10 @@ class FavoriteMovieViewModelImpl(private val repository: FavoriteRepositoryImpl)
         } catch (ex: Exception) {
             _state.value = FavoriteMovieState.HideLoading
             _state.value = FavoriteMovieState.LoadScreenError
-            throw ex
         }
     }
+
+    suspend fun movie() = repository.getFavoriteMovie()
 }
 
 sealed class FavoriteMovieState {

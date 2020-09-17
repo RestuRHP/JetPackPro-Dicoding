@@ -10,8 +10,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.github.florent37.glidepalette.BitmapPalette
 import com.github.florent37.glidepalette.GlidePalette
 import kotlinx.android.synthetic.main.item.view.*
-import kotlinx.android.synthetic.main.item_movie.view.img_poster
-import kotlinx.android.synthetic.main.item_movie.view.tv_title
 import net.learn.jetpack.BuildConfig
 import net.learn.jetpack.R
 import net.learn.jetpack.data.model.movies.Movie
