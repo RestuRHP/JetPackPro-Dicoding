@@ -1,4 +1,4 @@
-package net.learn.jetpack.ui.favorite.movie
+package net.learn.jetpack.ui.favorite.tv
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,19 +11,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagedList
 import kotlinx.android.synthetic.main.favorite_fragment.*
 import net.learn.jetpack.R
-import net.learn.jetpack.data.model.movies.Movie
-import net.learn.jetpack.data.repository.favorite.FavoriteMovieRepositoryImpl
-import net.learn.jetpack.ui.favorite.movie.viewmodel.FavoriteMovieState
-import net.learn.jetpack.ui.favorite.movie.viewmodel.FavoriteMovieViewModelFactory
-import net.learn.jetpack.ui.favorite.movie.viewmodel.FavoriteMovieViewModelImpl
+import net.learn.jetpack.data.model.tv.TvShow
+import net.learn.jetpack.data.repository.favorite.FavoriteTvRepositoryImpl
+import net.learn.jetpack.ui.favorite.tv.viewmodel.FavoriteTvState
+import net.learn.jetpack.ui.favorite.tv.viewmodel.FavoriteTvViewModelFactory
+import net.learn.jetpack.ui.favorite.tv.viewmodel.FavoriteTvViewModelImpl
 import net.learn.jetpack.utils.makeGone
 import net.learn.jetpack.utils.makeVisible
 
-class MovieFavoriteFragment : Fragment() {
-    private lateinit var vm: FavoriteMovieViewModelImpl
-    private lateinit var favoriteAdapter: FavoriteMovieAdapter
-
-    private var favoriteList: ArrayList<Movie>? = arrayListOf()
+class TvFavoriteFragment : Fragment() {
+    private lateinit var vm: FavoriteTvViewModelImpl
+    private lateinit var favoriteAdapter: FavoriteTvAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,13 +33,13 @@ class MovieFavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        favoriteAdapter = FavoriteMovieAdapter()
+        favoriteAdapter = FavoriteTvAdapter()
         rv_movies_favorite.apply {
             adapter = favoriteAdapter
             setHasFixedSize(true)
         }
-        val factory = FavoriteMovieViewModelFactory(FavoriteMovieRepositoryImpl.instance)
-        vm = ViewModelProvider(this, factory).get(FavoriteMovieViewModelImpl::class.java)
+        val factory = FavoriteTvViewModelFactory(FavoriteTvRepositoryImpl.instance)
+        vm = ViewModelProvider(this, factory).get(FavoriteTvViewModelImpl::class.java)
 
         initData()
         initObserver()
@@ -49,26 +47,26 @@ class MovieFavoriteFragment : Fragment() {
 
     private fun initData() {
         lifecycleScope.launchWhenCreated {
-            vm.getFavoriteMovie()
+            vm.getFavoriteTv()
         }
     }
 
     private fun initObserver() {
         vm.state.observe(viewLifecycleOwner, { state ->
             when (state) {
-                is FavoriteMovieState.HideLoading -> {
+                is FavoriteTvState.HideLoading -> {
                     pbFavorite.makeGone()
                 }
-                is FavoriteMovieState.ShowLoading -> {
+                is FavoriteTvState.ShowLoading -> {
                     pbFavorite.makeVisible()
                 }
-                is FavoriteMovieState.LoadScreenError -> {
+                is FavoriteTvState.LoadScreenError -> {
                     loadErrorScreen()
                 }
-                is FavoriteMovieState.LoadEmptyScreen -> {
+                is FavoriteTvState.LoadEmptyScreen -> {
                     loadEmptyScreen()
                 }
-                is FavoriteMovieState.LoadFavoriteMovie -> {
+                is FavoriteTvState.LoadFavoriteMovie -> {
                     pbFavorite.makeGone()
                     showData()
                 }
@@ -78,11 +76,11 @@ class MovieFavoriteFragment : Fragment() {
 
     private fun showData() {
         lifecycleScope.launchWhenCreated {
-            vm.movie()?.observe(viewLifecycleOwner, observer)
+            vm.tvShow()?.observe(viewLifecycleOwner, observer)
         }
     }
 
-    private val observer = Observer<PagedList<Movie>> {
+    private val observer = Observer<PagedList<TvShow>> {
         favoriteAdapter.submitList(it)
     }
 

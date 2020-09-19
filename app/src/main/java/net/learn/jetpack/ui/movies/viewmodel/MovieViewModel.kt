@@ -42,7 +42,6 @@ class MovieViewModel(private val movieRepository: MovieRepository) : ViewModel()
                     val data = movieRepository.getDiscoveryMovieFromDB()
                     _state.postValue(MovieState.LoadMovieSuccess(data = data))
                 } catch (ex: Exception) {
-                    throw ex
                 }
             }
         }

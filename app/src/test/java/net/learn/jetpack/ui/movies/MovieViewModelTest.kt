@@ -86,7 +86,6 @@ class MovieViewModelTest {
 
     @Test
     fun `given paging viewModel when get next movie should return fail`() {
-//        movieSet.addAll(Dummy.generateDummyMovies())
         runBlocking {
             `when`(movieRepository.paginationSets()).thenReturn(null)
             `when`(movieRepository.getDiscoveryMovieFromDB()).thenReturn(null)

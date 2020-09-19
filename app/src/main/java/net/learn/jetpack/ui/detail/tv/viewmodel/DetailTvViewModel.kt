@@ -53,7 +53,7 @@ class DetailTvViewModel(private val repository: DetailTvRepository) : ViewModel(
 
     override suspend fun isFavorite(tvId: Int) {
         val data = repository.isFavorite(tvId)
-        if (data?.size == 0) {
+        if (data == null || data.size == 0) {
             _state.postValue(DetailTvState.IsFavoriteTheater(false))
         } else {
             _state.postValue(DetailTvState.IsFavoriteTheater(true))

@@ -21,6 +21,7 @@ class DetailMovieRepository private constructor() :
 
     override suspend fun removeMovieFromFavorite(movieId: Int) {
         roomStoreBase?.removeFromFavorite(movieId)
+        throw Exception("error")
     }
 
     override suspend fun isFavoriteMovie(movieId: Int): MutableList<Movie>? =

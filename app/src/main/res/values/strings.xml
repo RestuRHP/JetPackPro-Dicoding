@@ -16,4 +16,5 @@
     <string name="failed_remove_favorite">Failed Remove Favorite</string>
     <string name="success_remove_favorite">Success  Remove Favorite</string>
     <string name="text_no_favorite">Found Something?</string>
+    <string name="empty">empty</string>
 </resources>

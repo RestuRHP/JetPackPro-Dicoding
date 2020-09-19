@@ -43,7 +43,7 @@ class DetailMovieViewModel(private val repository: DetailMovieRepository) : View
 
     override suspend fun isFavoriteMovie(movieId: Int) {
         val data = repository.isFavoriteMovie(movieId)
-        if (data?.size == 0) {
+        if (data == null || data.size == 0) {
             _state.postValue(DetailMovieState.IsFavoriteTheater(false))
         } else {
             _state.postValue(DetailMovieState.IsFavoriteTheater(true))
