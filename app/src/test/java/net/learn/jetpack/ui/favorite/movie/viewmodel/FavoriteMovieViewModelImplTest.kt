@@ -60,7 +60,6 @@ class FavoriteMovieViewModelImplTest {
 
 
             val allFavorite = mockPagedList(Dummy.generateDummyMovies())
-            vm.movie()
             verify(repository, atLeastOnce()).getFavoriteMovie()
             assertNotNull(allFavorite)
         }
