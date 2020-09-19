@@ -4,27 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.display_fragment.*
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.distinctUntilChangedBy
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.launch
-import net.learn.jetpack.Injection
 import net.learn.jetpack.R
+import net.learn.jetpack.data.model.movies.Movie
+import net.learn.jetpack.data.repository.MovieRepository
+import net.learn.jetpack.ui.movies.viewmodel.MovieState
+import net.learn.jetpack.ui.movies.viewmodel.MovieViewModel
+import net.learn.jetpack.ui.movies.viewmodel.MovieViewModelFactory
+import net.learn.jetpack.utils.makeGone
+import net.learn.jetpack.utils.makeVisible
 
 class MovieFragment : Fragment() {
 
+    companion object {
+        const val dao = "MovieDao"
+    }
+
     private lateinit var vm: MovieViewModel
-    private lateinit var adapter: MovieAdapter
-    private var getJob: Job? = null
+    private lateinit var movieAdapter: MovieAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,59 +39,65 @@ class MovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        movieAdapter = MovieAdapter()
+        rv_movies.apply {
+            adapter = movieAdapter
+            setHasFixedSize(true)
+        }
+        val factory = MovieViewModelFactory(MovieRepository.instance)
+        vm = ViewModelProvider(this, factory).get(MovieViewModel::class.java)
 
-        vm = ViewModelProvider(this, Injection.provideViewModelFactory(context))
-            .get(MovieViewModel::class.java)
-
-        initAdapter()
-        getSets()
-        initSwipeRefresh()
+        initObserver()
+        setupScrollListener()
     }
 
-    private fun initAdapter() {
-        adapter = MovieAdapter()
-        rv_movies.adapter = adapter.withLoadStateHeaderAndFooter(
-            header = MovieLoadStateAdapter(adapter),
-            footer = MovieLoadStateAdapter(adapter)
-        )
-        lifecycleScope.launchWhenCreated {
-            adapter.addLoadStateListener {
-                swapRefresh.isRefreshing = it.refresh is LoadState.Loading
-                tv_loadmore_message.isVisible = it.append is LoadState.Loading
-                val errorState = it.append as? LoadState.Error
-                    ?: it.source.prepend as? LoadState.Error
-                    ?: it.append as? LoadState.Error
-                    ?: it.prepend as? LoadState.Error
-                errorState?.let {
-                    Toast.makeText(
-                        context,
-                        "\uD83D\uDE28 Wooops ${it.error}",
-                        Toast.LENGTH_LONG
-                    ).show()
+    private fun initObserver() {
+        vm.state?.observe(viewLifecycleOwner, Observer { state ->
+            swapRefresh.setOnRefreshListener { vm.getDiscoveryMovie() }
+            when (state) {
+                is MovieState.ShowLoading -> toggleLoading(true)
+                is MovieState.HideLoading -> toggleLoading(false)
+                is MovieState.LoadMovieSuccess -> {
+                    state.data?.let { showData(it) }
+                    hideError()
+                }
+                is MovieState.Error -> {
+                    toggleLoading(false)
+                    showError()
                 }
             }
-        }
-
-        lifecycleScope.launchWhenCreated {
-            adapter.loadStateFlow
-                .distinctUntilChangedBy { it.prepend }
-                .filter { it.prepend is LoadState.Loading }
-                .collect { rv_movies.smoothScrollToPosition(0) }
-        }
-        rv_movies.setHasFixedSize(true)
+        })
     }
 
-    private fun getSets() {
-        getJob?.cancel()
-        getJob = lifecycleScope.launch {
-            vm.currentItem?.collectLatest {
-                adapter.submitData(it)
+    private fun showData(data: MutableList<Movie>) {
+        movieAdapter.updateData(data)
+    }
+
+    private fun toggleLoading(loading: Boolean) {
+        swapRefresh.isRefreshing = loading
+    }
+
+    private fun showError() = layoutError.makeVisible()
+
+    private fun hideError() = layoutError.makeGone()
+
+    private fun setupScrollListener() {
+        rv_movies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager
+                layoutManager?.let {
+                    val visibleItemCount = it.childCount
+                    val totalItemCount = it.itemCount
+                    val firstVisibleItemPosition = when (layoutManager) {
+                        is LinearLayoutManager -> layoutManager.findLastVisibleItemPosition()
+                        is GridLayoutManager -> layoutManager.findLastVisibleItemPosition()
+                        else -> return
+                    }
+                    vm.listScrolled(visibleItemCount, firstVisibleItemPosition, totalItemCount)
+                }
             }
-        }
-    }
-
-    private fun initSwipeRefresh() {
-        swapRefresh.setOnRefreshListener { adapter.refresh() }
+        })
     }
 
 }

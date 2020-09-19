@@ -1,7 +1,7 @@
 package net.learn.jetpack.utils
 
-import net.learn.jetpack.model.movies.Movie
-import net.learn.jetpack.model.tv.TvShow
+import net.learn.jetpack.data.model.movies.Movie
+import net.learn.jetpack.data.model.tv.TvShow
 
 object Dummy {
 
@@ -10,6 +10,7 @@ object Dummy {
 
         listItem.add(
             Movie(
+                VID = 1,
                 id = 1,
                 backdropPath = "m0ObOaJBerZ3Unc74l471ar8Iiy.jpg",
                 originalLanguage = "en",
@@ -23,6 +24,7 @@ object Dummy {
         )
         listItem.add(
             Movie(
+                VID = 1,
                 id = 2,
                 backdropPath = "xXBnM6uSTk6qqCf0SRZKXcga9Ba.jpg",
                 originalLanguage = "en",
@@ -36,6 +38,7 @@ object Dummy {
         )
         listItem.add(
             Movie(
+                VID = 1,
                 id = 3,
                 backdropPath = "AeDS2MKGFy6QcjgWbJBde0Ga6Hd.jpg",
                 originalLanguage = "en",
@@ -49,6 +52,7 @@ object Dummy {
         )
         listItem.add(
             Movie(
+                VID = 1,
                 id = 4,
                 backdropPath = "lMbUiOZh8wELqY63v3ou54yTvEG.jpg",
                 originalLanguage = "en",
@@ -62,6 +66,7 @@ object Dummy {
         )
         listItem.add(
             Movie(
+                VID = 1,
                 id = 5,
                 backdropPath = "d7JUXVvjvVCXWs1mlpyO5ESdWdT.jpg",
                 originalLanguage = "en",
@@ -75,6 +80,7 @@ object Dummy {
         )
         listItem.add(
             Movie(
+                VID = 1,
                 id = 6,
                 backdropPath = "n1RohH2VoK1CdVI2fXvcP19dSlm.jpg",
                 originalLanguage = "en",
@@ -88,6 +94,7 @@ object Dummy {
         )
         listItem.add(
             Movie(
+                VID = 1,
                 id = 7,
                 backdropPath = "n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
                 originalLanguage = "en",
@@ -101,6 +108,7 @@ object Dummy {
         )
         listItem.add(
             Movie(
+                VID = 1,
                 id = 8,
                 backdropPath = "9xNOiv6DZZjH7ABoUUDP0ZynouU.jpg",
                 originalLanguage = "en",
@@ -114,6 +122,7 @@ object Dummy {
         )
         listItem.add(
             Movie(
+                VID = 1,
                 id = 9,
                 backdropPath = "rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
                 originalLanguage = "en",
@@ -127,6 +136,7 @@ object Dummy {
         )
         listItem.add(
             Movie(
+                VID = 1,
                 id = 10,
                 backdropPath = "8IjnyGbzcX5Ulb4kXLnecgWDEYA.jpg",
                 originalLanguage = "en",
@@ -154,7 +164,8 @@ object Dummy {
                 posterPath = "6t6r1VGQTTQecN4V0sZeqsmdU9g.jpg",
                 releaseDate = "1999-09-20",
                 title = "Law & Order: Special Victims Unit",
-                voteAverage = 7.2
+                voteAverage = 7.2,
+                voteCount = 10
             )
         )
         listItem.add(
@@ -167,7 +178,8 @@ object Dummy {
                 posterPath = "qcr9bBY6MVeLzriKCmJOv1562uY.jpg",
                 releaseDate = "1989-12-17",
                 title = "The Simpsons",
-                voteAverage = 7.6
+                voteAverage = 7.6,
+                voteCount = 10
             )
         )
         listItem.add(
@@ -180,7 +192,8 @@ object Dummy {
                 posterPath = "q3E71oY6qgAEiw6YZIHDlHSLwer.jpg",
                 releaseDate = "1999-01-31",
                 title = "Family Guy",
-                voteAverage = 6.7
+                voteAverage = 6.7,
+                voteCount = 10
             )
         )
         listItem.add(
@@ -193,7 +206,8 @@ object Dummy {
                 posterPath = "f496cm9enuEsZkSPzCwnTESEK5s.jpg",
                 releaseDate = "1994-09-22",
                 title = "Friends",
-                voteAverage = 8.2
+                voteAverage = 8.2,
+                voteCount = 10
             )
         )
         listItem.add(
@@ -206,7 +220,8 @@ object Dummy {
                 posterPath = "wrLC5kx0nEq9U0MyJD7dnOT6m5F.jpg",
                 releaseDate = "2020-07-17",
                 title = "Cursed",
-                voteAverage = 7.6
+                voteAverage = 7.6,
+                voteCount = 10
             )
         )
         listItem.add(
@@ -219,7 +234,8 @@ object Dummy {
                 posterPath = "wHa6KOJAoNTFLFtp7wguUJKSnju.jpg",
                 releaseDate = "2014-10-07",
                 title = "The Flash",
-                voteAverage = 7.4
+                voteAverage = 7.4,
+                voteCount = 10
             )
         )
         listItem.add(
@@ -232,7 +248,8 @@ object Dummy {
                 posterPath = "KoYWXbnYuS3b0GyQPkbuexlVK9.jpg",
                 releaseDate = "2005-09-13",
                 title = "Supernatural",
-                voteAverage = 7.9
+                voteAverage = 7.9,
+                voteCount = 10
             )
         )
         listItem.add(
@@ -245,7 +262,8 @@ object Dummy {
                 posterPath = "jnsvc7gCKocXnrTXF6p03cICTWb.jpg",
                 releaseDate = "2005-03-27",
                 title = "Grey's Anatomy",
-                voteAverage = 7.8
+                voteAverage = 7.8,
+                voteCount = 10
             )
         )
         listItem.add(
@@ -258,7 +276,8 @@ object Dummy {
                 posterPath = "7TCwgX7oQKxcWYEhSPRmaHe6ULN.jpg",
                 releaseDate = "2005-09-22",
                 title = "Criminal Minds",
-                voteAverage = 7.9
+                voteAverage = 7.9,
+                voteCount = 10
             )
         )
         listItem.add(
@@ -271,7 +290,8 @@ object Dummy {
                 posterPath = "rOuGm07PxBhEsK9TaGPRQVJQm1X.jpg",
                 releaseDate = "1997-04-01",
                 title = "ポケモン",
-                voteAverage = 6.8
+                voteAverage = 6.8,
+                voteCount = 10
             )
         )
         return listItem

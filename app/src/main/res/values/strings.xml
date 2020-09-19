@@ -1,20 +1,20 @@
 <resources>
     <string name="app_name">JetPack Pro</string>
-    <string name="tvShows">Tv Shows</string>
-    <string name="movies">Movies</string>
-    <string name="title_film">Title Film</string>
     <string name="time">release</string>
     <string name="overview">Overview</string>
-    <string name="image_rating">Image Rating</string>
     <string name="rating">10</string>
-    <string name="image_lang">Image Language</string>
     <string name="language">Language</string>
     <string name="image_poster">Image Poster</string>
     <string name="icon_star">Star Image</string>
     <string name="image_white">Line Image</string>
     <string name="lorem">-</string>
-    <string name="load_more_message">waiting</string>
-    <string name="tv_title">Birds of Prey (and the Fantabulous Emancipation of One Harley Quinn)</string>
-    <string name="retry">retry</string>
-    <string name="favorite">Favorite</string>
+    <string name="error_string">Oops..Something went wrong!!</string>
+    <string name="swipe">Swipe to Refresh</string>
+    <string name="more_like_this">More Like This</string>
+    <string name="success_add_favorite">Success Save Favorite</string>
+    <string name="failed_add_favorite">Failed Save Favorite</string>
+    <string name="failed_remove_favorite">Failed Remove Favorite</string>
+    <string name="success_remove_favorite">Success  Remove Favorite</string>
+    <string name="text_no_favorite">Found Something?</string>
+    <string name="empty">empty</string>
 </resources>

@@ -1,32 +1,63 @@
 package net.learn.jetpack.ui.movies
 
+import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import net.learn.jetpack.model.movies.Movie
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.github.florent37.glidepalette.BitmapPalette
+import com.github.florent37.glidepalette.GlidePalette
+import kotlinx.android.synthetic.main.item.view.*
+import net.learn.jetpack.BuildConfig
+import net.learn.jetpack.R
+import net.learn.jetpack.data.model.movies.Movie
+import net.learn.jetpack.ui.detail.movie.DetailMovieActivity
 
-class MovieAdapter : PagingDataAdapter<Movie, ViewHolder>(REPO_COMPARATOR) {
+class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+    private val movieItems = mutableListOf<Movie>()
 
-    companion object {
-        private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<Movie>() {
-            override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean =
-                oldItem.title == newItem.title
-
-            override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean =
-                oldItem == newItem
-        }
+    fun updateData(items: MutableList<Movie>) {
+        movieItems.clear()
+        movieItems.addAll(items)
+        notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val repoItem = getItem(position)
-        if (repoItem != null) {
-            (holder as MovieViewHolder).bind(repoItem)
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        fun bind(items: Movie) {
+            with(itemView) {
+                tv_title.text = items.title
+                Glide.with(itemView.context)
+                    .load(BuildConfig.POSTER_PATH + items.posterPath)
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                    )
+                    .listener(
+                        GlidePalette.with(BuildConfig.POSTER_PATH + items.posterPath)
+                            .use(BitmapPalette.Profile.VIBRANT)
+                            .intoBackground(itemView.item_poster_palette)
+                            .crossfade(true)
+                    )
+                    .dontAnimate()
+                    .into(img_poster)
+                itemView.setOnClickListener {
+                    val intent = Intent(itemView.context, DetailMovieActivity::class.java)
+                    intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, items)
+                    itemView.context.startActivity(intent)
+                }
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return MovieViewHolder.create(parent)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
+        return ViewHolder(view)
     }
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(movieItems[position])
+    }
+
+    override fun getItemCount(): Int = movieItems.size
 }

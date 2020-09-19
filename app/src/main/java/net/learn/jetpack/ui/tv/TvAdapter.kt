@@ -7,18 +7,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.item_movie.view.*
+import com.github.florent37.glidepalette.BitmapPalette
+import com.github.florent37.glidepalette.GlidePalette
+import kotlinx.android.synthetic.main.item.view.*
 import net.learn.jetpack.BuildConfig
 import net.learn.jetpack.R
-import net.learn.jetpack.model.tv.TvShow
-import net.learn.jetpack.ui.detail.DetailActivity
+import net.learn.jetpack.data.model.tv.TvShow
+import net.learn.jetpack.ui.detail.tv.DetailTvActivity
 
 class TvAdapter : RecyclerView.Adapter<TvAdapter.ViewHolder>() {
-    private val tvSets = mutableListOf<TvShow>()
+    private val tvItems = mutableListOf<TvShow>()
 
-    fun updateData(sets: MutableList<TvShow>) {
-        tvSets.clear()
-        tvSets.addAll(sets)
+    fun updateData(items: MutableList<TvShow>) {
+        tvItems.clear()
+        tvItems.addAll(items)
         notifyDataSetChanged()
     }
 
@@ -26,28 +28,22 @@ class TvAdapter : RecyclerView.Adapter<TvAdapter.ViewHolder>() {
         fun bind(items: TvShow) {
             with(itemView) {
                 tv_title.text = items.title
-                tv_language.text = items.originalLanguage
-                tv_rating.text = items.voteAverage.toString()
-                tv_overview.text = items.overview
-                tv_release.text = items.releaseDate
                 Glide.with(itemView.context)
-                    .asBitmap()
                     .load(BuildConfig.POSTER_PATH + items.posterPath)
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
-                            .error(R.drawable.ic_error)
+                    )
+                    .listener(
+                        GlidePalette.with(BuildConfig.POSTER_PATH + items.posterPath)
+                            .use(BitmapPalette.Profile.VIBRANT)
+                            .intoBackground(itemView.item_poster_palette)
+                            .crossfade(true)
                     )
                     .dontAnimate()
                     .into(img_poster)
-//                fun createPaletteAsync(bitmap: Bitmap) {
-//                    Palette.from(bitmap).generate { palette ->
-//                        // Use generated instance
-//                    }
-//                }
                 itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.EXTRA_ID, items.id)
-                    intent.putExtra(DetailActivity.EXTRA_TITLE, items.title)
+                    val intent = Intent(itemView.context, DetailTvActivity::class.java)
+                    intent.putExtra(DetailTvActivity.EXTRA_TV, items)
                     itemView.context.startActivity(intent)
                 }
             }
@@ -55,13 +51,13 @@ class TvAdapter : RecyclerView.Adapter<TvAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
         return ViewHolder(view)
     }
 
-    override fun getItemCount() = tvSets.size
+    override fun getItemCount() = tvItems.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(tvSets[position])
+        holder.bind(tvItems[position])
     }
 }
