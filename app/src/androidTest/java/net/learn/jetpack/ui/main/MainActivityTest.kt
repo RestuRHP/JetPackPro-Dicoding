@@ -55,26 +55,39 @@ class MainActivityTest {
 
     @Test
     fun testRecyclerDataOnMainLayoutClick() {
+        //        pastikan sudah ada data favorite
         onView(allOf(withId(R.id.rv_movies), isDisplayed())).perform(
-            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(1, click())
         )
         onView(withId(R.id.ivTheaterFavorite)).perform(click()).check(matches(isDisplayed()))
     }
 
     @Test
+    fun testRecyclerSimilarInDetail() {
+        onView(allOf(withId(R.id.rv_movies), isDisplayed())).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(1, click())
+        )
+        onView(withId(R.id.rv_similar)).check(matches(isDisplayed()))
+        onView(withId(R.id.detail_activity)).perform(swipeUp())
+        onView(withId(R.id.rv_similar)).perform(swipeUp())
+        onView(withId(R.id.rv_similar)).perform(swipeDown())
+    }
+
+    @Test
     fun testMenuFavorite() {
-        onView(withId(R.id.mnFavorite)).perform(click()).check(matches(isDisplayed()))
+        onView(withId(R.id.mnFavorite)).check(matches(isDisplayed()))
+        onView(withId(R.id.mnFavorite)).perform(click())
     }
 
     @Test
     fun testFavoriteTabLayout() {
-        onView(withId(R.id.mnFavorite)).perform(click()).check(matches(isDisplayed()))
+        onView(withId(R.id.mnFavorite)).perform(click())
         onView(withId(R.id.tabLayout)).perform(click()).check(matches(isDisplayed()))
     }
 
     @Test
     fun testSwipePagerFavoriteLayoutSwipeLeftRight() {
-        onView(withId(R.id.mnFavorite)).perform(click()).check(matches(isDisplayed()))
+        onView(withId(R.id.mnFavorite)).perform(click())
         onView(withId(R.id.favorite_viewpager)).check(matches(isDisplayed()))
         onView(withId(R.id.favorite_viewpager)).perform(swipeLeft())
         onView(withId(R.id.favorite_viewpager)).perform(swipeRight())
@@ -82,13 +95,13 @@ class MainActivityTest {
 
     @Test
     fun testFavoriteItemShow() {
-        onView(withId(R.id.mnFavorite)).perform(click()).check(matches(isDisplayed()))
+        onView(withId(R.id.mnFavorite)).perform(click())
         onView(allOf(withId(R.id.rv_movies_favorite), isDisplayed()))
     }
 
     @Test
     fun testRecyclerDataOnFavoriteLayoutClick() {
-        onView(withId(R.id.mnFavorite)).perform(click()).check(matches(isDisplayed()))
+        onView(withId(R.id.mnFavorite)).perform(click())
         onView(allOf(withId(R.id.rv_movies_favorite), isDisplayed())).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
         )

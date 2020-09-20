@@ -42,17 +42,4 @@ class MovieRepositoryTest {
             assertEquals(movie?.get(0)?.title, "The Old Guard")
         }
     }
-
-    @Test
-    fun `given repository when get discovery movie should return error`() {
-        runBlocking {
-            `when`(localStore?.getDiscoveryMovie(1)).thenReturn(null)
-            `when`(remoteStore?.getDiscoveryMovie(1)).thenReturn(null)
-            try {
-                movieRepository?.loadDiscoveryMovie()
-            } catch (ex: Exception) {
-
-            }
-        }
-    }
 }

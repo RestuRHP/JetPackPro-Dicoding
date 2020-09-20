@@ -45,6 +45,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -53,20 +54,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <!--            <ImageView-->
-            <!--                android:id="@+id/ivTheaterFavorite"-->
-            <!--                android:layout_width="30dp"-->
-            <!--                android:layout_height="30dp"-->
-            <!--                android:layout_marginTop="8dp"-->
-            <!--                android:layout_marginEnd="16dp"-->
-            <!--                android:layout_marginRight="16dp"-->
-            <!--                android:clickable="true"-->
-            <!--                android:contentDescription="@string/text_favorite_icon"-->
-            <!--                android:focusable="true"-->
-            <!--                android:src="@drawable/ic_unFavorite"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <TextView
                 android:id="@+id/tv_release"
