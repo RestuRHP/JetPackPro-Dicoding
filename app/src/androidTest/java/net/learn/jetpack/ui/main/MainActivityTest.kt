@@ -7,8 +7,8 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.rule.ActivityTestRule
 import net.learn.jetpack.R
 import net.learn.jetpack.utils.EspressoIdlingResource
 import org.hamcrest.Matchers.allOf
@@ -22,7 +22,7 @@ import org.junit.runner.RunWith
 class MainActivityTest {
 
     @get:Rule
-    var activityRule = ActivityTestRule(MainActivity::class.java)
+    var activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Before
     fun setUp() {
@@ -94,17 +94,23 @@ class MainActivityTest {
     }
 
     @Test
-    fun testFavoriteItemShow() {
+    fun testRecyclerviewFavoriteShow() {
         onView(withId(R.id.mnFavorite)).perform(click())
         onView(allOf(withId(R.id.rv_movies_favorite), isDisplayed()))
     }
 
     @Test
     fun testRecyclerDataOnFavoriteLayoutClick() {
+        onView(allOf(withId(R.id.rv_movies), isDisplayed())).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(1, click())
+        )
+        onView(withId(R.id.ivTheaterFavorite)).perform(click())
+        onView(isRoot()).perform(pressBack())
         onView(withId(R.id.mnFavorite)).perform(click())
         onView(allOf(withId(R.id.rv_movies_favorite), isDisplayed())).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
         )
+        onView(isRoot()).perform(pressBack())
         onView(isRoot()).perform(pressBack())
     }
 

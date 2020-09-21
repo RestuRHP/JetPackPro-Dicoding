@@ -48,11 +48,12 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "API_KEY", "\"${getProperty("local.properties", "tmdb_api_key")}\""
-        buildConfigField "String", "BASE_URL", "\"${getProperty("local.properties", "base_url")}\""
-        buildConfigField "String", "SEARCH_URL", "\"${getProperty("local.properties", "search_url")}\""
-        buildConfigField "String", "POSTER_PATH", "\"${getProperty("local.properties", "poster_path")}\""
-        buildConfigField "String", "BACKDROP_PATH", "\"${getProperty("local.properties", "backdrop_path")}\""
+        buildConfigField "String", "API_KEY", "\"0bc4d12e12cd1880a3493cafe4cdb8e0\""
+        buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "SEARCH_URL", "\"https://api.themoviedb.org/3/search/\""
+        buildConfigField "String", "POSTER_PATH", "\"https://image.tmdb.org/t/p/w342/\""
+        buildConfigField "String", "BACKDROP_PATH", "\"https://image.tmdb.org/t/p/w500/\""
+
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
