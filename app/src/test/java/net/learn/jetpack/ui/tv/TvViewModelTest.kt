@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.times
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -44,7 +45,7 @@ class TvViewModelTest {
     }
 
     @Test
-    fun `given movies viewModel when get movie should return success`() {
+    fun `given movies viewModel when get tv should return success`() {
         tvSet.addAll(Dummy.generateDummyTvShows())
         runBlocking {
             `when`(tvRepository.loadDiscoveryTv()).thenReturn(tvSet)
@@ -59,7 +60,7 @@ class TvViewModelTest {
     }
 
     @Test
-    fun `given movies viewModel when get movie should return error`() {
+    fun `given movies viewModel when get tv should return error`() {
         runBlocking {
             `when`(tvRepository.loadDiscoveryTv()).thenThrow(IllegalThreadStateException())
             tvViewModel.getDiscoveryTv()
@@ -73,13 +74,23 @@ class TvViewModelTest {
     }
 
     @Test
-    fun `given paging viewModel when get next movie should return success`() {
+    fun `given paging viewModel when get next tv should return success`() {
         tvSet.addAll(Dummy.generateDummyTvShows())
         runBlocking {
             `when`(tvRepository.paginationSets()).thenReturn(null)
             `when`(tvRepository.getDiscoveryTvFromDB()).thenReturn(tvSet)
             tvViewModel.listScrolled(1, 1, 2)
             verify(observer).onChanged(TvState.LoadTvSuccess(tvSet))
+        }
+    }
+
+    @Test
+    fun `given paging viewModel when get next tv should return fail`() {
+        runBlocking {
+            `when`(tvRepository.paginationSets()).thenReturn(null)
+            `when`(tvRepository.getDiscoveryTvFromDB()).thenReturn(null)
+            tvViewModel.listScrolled(1, 1, 2)
+            verify(observer, times(2)).onChanged(TvState.LoadTvSuccess(null))
         }
     }
 }

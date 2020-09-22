@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.times
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -89,7 +90,7 @@ class MovieViewModelTest {
             `when`(movieRepository.paginationSets()).thenReturn(null)
             `when`(movieRepository.getDiscoveryMovieFromDB()).thenReturn(null)
             movieViewModel.listScrolled(1, 1, 2)
-            verify(observer).onChanged(MovieState.LoadMovieSuccess(null))
+            verify(observer, times(2)).onChanged(MovieState.LoadMovieSuccess(null))
         }
     }
 }
