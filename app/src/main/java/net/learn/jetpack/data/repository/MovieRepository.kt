@@ -23,7 +23,7 @@ class MovieRepository private constructor() : BaseRepository<MovieDataStore>() {
         }
     }
 
-    private suspend fun saveDiscoveryMovieToDB(page: Int): Boolean {
+    suspend fun saveDiscoveryMovieToDB(page: Int): Boolean {
         isRequestInProgress = true
         var successful = false
         try {
