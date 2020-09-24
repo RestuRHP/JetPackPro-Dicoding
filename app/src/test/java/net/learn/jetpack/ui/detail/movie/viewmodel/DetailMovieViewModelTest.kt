@@ -11,6 +11,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.setMain
 import net.learn.jetpack.data.model.movies.Movie
 import net.learn.jetpack.data.repository.detail.DetailMovieRepository
+import net.learn.jetpack.ui.BaseViewState
 import net.learn.jetpack.utils.Dummy
 import org.junit.Before
 import org.junit.Rule
@@ -32,7 +33,7 @@ class DetailMovieViewModelTest {
     @Mock
     private lateinit var repository: DetailMovieRepository
     private lateinit var vm: DetailMovieViewModel
-    private var observer = mock<Observer<DetailMovieState>>()
+    private var observer = mock<Observer<BaseViewState>>()
     private var movieSet = mutableListOf<Movie>()
 
     @Before
@@ -51,9 +52,9 @@ class DetailMovieViewModelTest {
             vm.getSimilarMovie(1)
 
             verify(repository, atLeastOnce()).getSimilarMovie(1)
-            verify(observer).onChanged(DetailMovieState.ShowLoading)
-            verify(observer).onChanged(DetailMovieState.HideLoading)
-            verify(observer).onChanged(DetailMovieState.LoadSimilarMovieSuccess(movieSet))
+            verify(observer).onChanged(BaseViewState.ShowLoading)
+            verify(observer).onChanged(BaseViewState.HideLoading)
+            verify(observer).onChanged(BaseViewState.LoadSimilarMovieSuccess(movieSet))
         }
     }
 
@@ -65,9 +66,9 @@ class DetailMovieViewModelTest {
             vm.getSimilarMovie(1)
 
             verify(repository, atLeastOnce()).getSimilarMovie(1)
-            verify(observer).onChanged(DetailMovieState.ShowLoading)
-            verify(observer).onChanged(DetailMovieState.HideLoading)
-            verify(observer).onChanged(DetailMovieState.LoadScreenError)
+            verify(observer).onChanged(BaseViewState.ShowLoading)
+            verify(observer).onChanged(BaseViewState.HideLoading)
+            verify(observer).onChanged(BaseViewState.LoadScreenError)
         }
     }
 
@@ -79,7 +80,7 @@ class DetailMovieViewModelTest {
             vm.isFavoriteMovie(1)
 
             verify(repository, atLeastOnce()).isFavoriteMovie(1)
-            verify(observer).onChanged(DetailMovieState.IsFavoriteTheater(true))
+            verify(observer).onChanged(BaseViewState.IsFavoriteTheater(true))
         }
     }
 
@@ -91,7 +92,7 @@ class DetailMovieViewModelTest {
             vm.isFavoriteMovie(1)
 
             verify(repository, atLeastOnce()).isFavoriteMovie(1)
-            verify(observer).onChanged(DetailMovieState.IsFavoriteTheater(false))
+            verify(observer).onChanged(BaseViewState.IsFavoriteTheater(false))
         }
     }
 
@@ -102,7 +103,7 @@ class DetailMovieViewModelTest {
             vm.setMovieToFavorite(1)
 
             verify(repository, atLeastOnce()).setMovieToFavorite(1)
-            verify(observer).onChanged(DetailMovieState.SuccessAddFavorite)
+            verify(observer).onChanged(BaseViewState.SuccessAddFavorite)
         }
     }
 
@@ -113,7 +114,7 @@ class DetailMovieViewModelTest {
             vm.removeMovieFromFavorite(1)
 
             verify(repository, atLeastOnce()).removeMovieFromFavorite(1)
-            verify(observer).onChanged(DetailMovieState.SuccessRemoveFavorite)
+            verify(observer).onChanged(BaseViewState.SuccessRemoveFavorite)
         }
     }
 }

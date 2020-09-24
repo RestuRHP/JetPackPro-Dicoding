@@ -1,11 +1,10 @@
 package net.learn.jetpack.data.repository
 
-import net.learn.jetpack.data.datastore.tv.TvDataStore
 import net.learn.jetpack.data.model.tv.TvShow
 
 private const val TV_STARTING_PAGE_INDEX = 1
 
-class TvRepository private constructor() : BaseRepository<TvDataStore>() {
+class TvRepository private constructor() : BaseRepository<TvShow>() {
     private var nextRequestPage = TV_STARTING_PAGE_INDEX
     private var isRequestInProgress = false
 
@@ -35,7 +34,7 @@ class TvRepository private constructor() : BaseRepository<TvDataStore>() {
         isRequestInProgress = true
         var successful = false
         try {
-            val response = remoteStore?.getDiscoveryTv(page = page)
+            val response = remoteStore?.getDiscovery(page = page)
             if (response != null) {
                 localStore?.addAll(response)
                 successful = true
@@ -49,7 +48,7 @@ class TvRepository private constructor() : BaseRepository<TvDataStore>() {
     }
 
     suspend fun getDiscoveryTvFromDB(): MutableList<TvShow>? {
-        return localStore?.getDiscoveryTv(nextRequestPage)
+        return localStore?.getDiscovery(nextRequestPage)
     }
 
     companion object {

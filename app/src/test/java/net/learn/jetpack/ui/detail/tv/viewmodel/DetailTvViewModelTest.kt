@@ -10,6 +10,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.setMain
 import net.learn.jetpack.data.model.tv.TvShow
 import net.learn.jetpack.data.repository.detail.DetailTvRepository
+import net.learn.jetpack.ui.BaseViewState
 import net.learn.jetpack.utils.Dummy
 import org.junit.Before
 import org.junit.Rule
@@ -30,7 +31,7 @@ class DetailTvViewModelTest {
     @Mock
     private lateinit var repository: DetailTvRepository
     private lateinit var vm: DetailTvViewModel
-    private var observer = mock<Observer<DetailTvState>>()
+    private var observer = mock<Observer<BaseViewState>>()
     private var movieSet = mutableListOf<TvShow>()
 
     @Before
@@ -49,9 +50,9 @@ class DetailTvViewModelTest {
             vm.getSimilarTv(1)
 
             Mockito.verify(repository, atLeastOnce()).getSimilarTv(1)
-            Mockito.verify(observer).onChanged(DetailTvState.ShowLoading)
-            Mockito.verify(observer).onChanged(DetailTvState.HideLoading)
-            Mockito.verify(observer).onChanged(DetailTvState.LoadSimilarSuccess(movieSet))
+            Mockito.verify(observer).onChanged(BaseViewState.ShowLoading)
+            Mockito.verify(observer).onChanged(BaseViewState.HideLoading)
+            Mockito.verify(observer).onChanged(BaseViewState.LoadSimilarTvSuccess(movieSet))
         }
     }
 
@@ -63,9 +64,9 @@ class DetailTvViewModelTest {
             vm.getSimilarTv(1)
 
             Mockito.verify(repository, atLeastOnce()).getSimilarTv(1)
-            Mockito.verify(observer).onChanged(DetailTvState.ShowLoading)
-            Mockito.verify(observer).onChanged(DetailTvState.HideLoading)
-            Mockito.verify(observer).onChanged(DetailTvState.LoadScreenError)
+            Mockito.verify(observer).onChanged(BaseViewState.ShowLoading)
+            Mockito.verify(observer).onChanged(BaseViewState.HideLoading)
+            Mockito.verify(observer).onChanged(BaseViewState.LoadScreenError)
         }
     }
 
@@ -77,7 +78,7 @@ class DetailTvViewModelTest {
             vm.isFavorite(1)
 
             Mockito.verify(repository, atLeastOnce()).isFavorite(1)
-            Mockito.verify(observer).onChanged(DetailTvState.IsFavoriteTheater(true))
+            Mockito.verify(observer).onChanged(BaseViewState.IsFavoriteTheater(true))
         }
     }
 
@@ -89,7 +90,7 @@ class DetailTvViewModelTest {
             vm.isFavorite(1)
 
             Mockito.verify(repository, atLeastOnce()).isFavorite(1)
-            Mockito.verify(observer).onChanged(DetailTvState.IsFavoriteTheater(false))
+            Mockito.verify(observer).onChanged(BaseViewState.IsFavoriteTheater(false))
         }
     }
 
@@ -100,7 +101,7 @@ class DetailTvViewModelTest {
             vm.setTvToFavorite(1)
 
             Mockito.verify(repository, atLeastOnce()).setTvToFavorite(1)
-            Mockito.verify(observer).onChanged(DetailTvState.SuccessAddFavorite)
+            Mockito.verify(observer).onChanged(BaseViewState.SuccessAddFavorite)
         }
     }
 
@@ -111,7 +112,7 @@ class DetailTvViewModelTest {
             vm.removeTvFromFavorite(1)
 
             Mockito.verify(repository, atLeastOnce()).removeTvFromFavorite(1)
-            Mockito.verify(observer).onChanged(DetailTvState.SuccessRemoveFavorite)
+            Mockito.verify(observer).onChanged(BaseViewState.SuccessRemoveFavorite)
         }
     }
 }

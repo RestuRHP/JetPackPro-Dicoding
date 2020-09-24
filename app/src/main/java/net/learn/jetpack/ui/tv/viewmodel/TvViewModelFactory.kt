@@ -7,8 +7,8 @@ import net.learn.jetpack.data.repository.TvRepository
 @Suppress("UNCHECKED_CAST")
 class TvViewModelFactory(private val tvRepository: TvRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MovieViewModel::class.java))
-            return MovieViewModel(tvRepository) as T
+        if (modelClass.isAssignableFrom(TvViewModel::class.java))
+            return TvViewModel(tvRepository) as T
         throw IllegalArgumentException()
     }
 

@@ -79,7 +79,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
 
     //paging library
-    implementation 'androidx.paging:paging-runtime:2.1.1'
+    implementation 'androidx.paging:paging-runtime:2.1.2'
 
     // Kotlin components
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -98,7 +98,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.retrofit2:retrofit-mock:$retrofitVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpLoggingInterceptorVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
 
     // Room components
     implementation "androidx.room:room-runtime:$roomVersion"
@@ -129,7 +129,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.3.0'
 //    testImplementation "androidx.paging:paging-common:$pagingVersion"
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.5'
-    testImplementation 'com.squareup.okhttp3:mockwebserver:4.8.0'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.9.0'
     testImplementation 'junit:junit:4.13'
     testImplementation "androidx.arch.core:core-testing:2.1.0"
     testImplementation 'org.mockito:mockito-core:3.0.0'

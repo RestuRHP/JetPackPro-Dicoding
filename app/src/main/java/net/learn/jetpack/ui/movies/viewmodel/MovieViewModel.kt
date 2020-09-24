@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import net.learn.jetpack.data.model.movies.Movie
 import net.learn.jetpack.data.repository.MovieRepository
+import net.learn.jetpack.ui.BaseViewState
 
 class MovieViewModel(private val movieRepository: MovieRepository) : ViewModel() {
 
@@ -14,8 +14,8 @@ class MovieViewModel(private val movieRepository: MovieRepository) : ViewModel()
         private const val VISIBLE_THRESHOLD = 1
     }
 
-    private val _state = MutableLiveData<MovieState>()
-    val state: LiveData<MovieState>?
+    private val _state = MutableLiveData<BaseViewState>()
+    val state: LiveData<BaseViewState>?
         get() = _state
 
     init {
@@ -23,14 +23,14 @@ class MovieViewModel(private val movieRepository: MovieRepository) : ViewModel()
     }
 
     fun getDiscoveryMovie() = viewModelScope.launch {
-        _state.value = MovieState.ShowLoading
+        _state.value = BaseViewState.ShowLoading
         try {
             val data = movieRepository.loadDiscoveryMovie()
-            _state.value = MovieState.HideLoading
-            _state.postValue(MovieState.LoadMovieSuccess(data = data))
+            _state.value = BaseViewState.HideLoading
+            _state.postValue(BaseViewState.LoadMovieSuccess(data = data))
         } catch (ex: Exception) {
-            _state.value = MovieState.HideLoading
-            _state.value = MovieState.Error
+            _state.value = BaseViewState.HideLoading
+            _state.value = BaseViewState.Error
         }
     }
 
@@ -40,17 +40,9 @@ class MovieViewModel(private val movieRepository: MovieRepository) : ViewModel()
                 try {
                     movieRepository.paginationSets()
                     val data = movieRepository.getDiscoveryMovieFromDB()
-                    _state.postValue(MovieState.LoadMovieSuccess(data = data))
+                    _state.postValue(BaseViewState.LoadMovieSuccess(data = data))
                 } catch (ex: Exception) {
                 }
             }
         }
-}
-
-sealed class MovieState {
-    object ShowLoading : MovieState()
-    object HideLoading : MovieState()
-    object Error : MovieState()
-
-    data class LoadMovieSuccess(val data: MutableList<Movie>?) : MovieState()
 }

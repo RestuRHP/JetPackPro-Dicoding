@@ -37,7 +37,6 @@ class FavoriteTvViewModelImplTest {
     private lateinit var vm: FavoriteTvViewModelImpl
     private var observer = mock<Observer<FavoriteTvState>>()
     private var oserv = mock<Observer<PagedList<TvShow>>>()
-    private var movieSet = mutableListOf<TvShow>()
 
 
     @Before

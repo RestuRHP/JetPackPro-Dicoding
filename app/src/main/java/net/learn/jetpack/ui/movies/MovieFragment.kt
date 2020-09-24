@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,17 +13,12 @@ import kotlinx.android.synthetic.main.display_fragment.*
 import net.learn.jetpack.R
 import net.learn.jetpack.data.model.movies.Movie
 import net.learn.jetpack.data.repository.MovieRepository
-import net.learn.jetpack.ui.movies.viewmodel.MovieState
 import net.learn.jetpack.ui.movies.viewmodel.MovieViewModel
 import net.learn.jetpack.ui.movies.viewmodel.MovieViewModelFactory
 import net.learn.jetpack.utils.makeGone
 import net.learn.jetpack.utils.makeVisible
 
 class MovieFragment : Fragment() {
-
-    companion object {
-        const val dao = "MovieDao"
-    }
 
     private lateinit var vm: MovieViewModel
     private lateinit var movieAdapter: MovieAdapter
@@ -52,16 +46,16 @@ class MovieFragment : Fragment() {
     }
 
     private fun initObserver() {
-        vm.state?.observe(viewLifecycleOwner, Observer { state ->
+        vm.state?.observe(viewLifecycleOwner, { state ->
             swapRefresh.setOnRefreshListener { vm.getDiscoveryMovie() }
             when (state) {
-                is MovieState.ShowLoading -> toggleLoading(true)
-                is MovieState.HideLoading -> toggleLoading(false)
-                is MovieState.LoadMovieSuccess -> {
+                is net.learn.jetpack.ui.BaseViewState.ShowLoading -> toggleLoading(true)
+                is net.learn.jetpack.ui.BaseViewState.HideLoading -> toggleLoading(false)
+                is net.learn.jetpack.ui.BaseViewState.LoadMovieSuccess -> {
                     state.data?.let { showData(it) }
                     hideError()
                 }
-                is MovieState.Error -> {
+                is net.learn.jetpack.ui.BaseViewState.Error -> {
                     toggleLoading(false)
                     showError()
                 }

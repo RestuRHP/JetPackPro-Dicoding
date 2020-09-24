@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,19 +13,15 @@ import kotlinx.android.synthetic.main.display_fragment.*
 import net.learn.jetpack.R
 import net.learn.jetpack.data.model.tv.TvShow
 import net.learn.jetpack.data.repository.TvRepository
-import net.learn.jetpack.ui.tv.viewmodel.MovieViewModel
-import net.learn.jetpack.ui.tv.viewmodel.TvState
+import net.learn.jetpack.ui.BaseViewState
+import net.learn.jetpack.ui.tv.viewmodel.TvViewModel
 import net.learn.jetpack.ui.tv.viewmodel.TvViewModelFactory
 import net.learn.jetpack.utils.makeGone
 import net.learn.jetpack.utils.makeVisible
 
 class TvShowFragment : Fragment() {
 
-    companion object {
-        const val dao = "TvDao"
-    }
-
-    private lateinit var vm: MovieViewModel
+    private lateinit var vm: TvViewModel
     private lateinit var tvAdapter: TvAdapter
 
     override fun onCreateView(
@@ -47,23 +42,23 @@ class TvShowFragment : Fragment() {
         }
 
         val factory = TvViewModelFactory(TvRepository.instance)
-        vm = ViewModelProvider(this, factory).get(MovieViewModel::class.java)
+        vm = ViewModelProvider(this, factory).get(TvViewModel::class.java)
 
         initObserver()
         setupScrollListener()
     }
 
     private fun initObserver() {
-        vm.state?.observe(viewLifecycleOwner, Observer { state ->
+        vm.state?.observe(viewLifecycleOwner, { state ->
             swapRefresh.setOnRefreshListener { vm.getDiscoveryTv() }
             when (state) {
-                is TvState.ShowLoading -> toggleLoading(true)
-                is TvState.HideLoading -> toggleLoading(false)
-                is TvState.LoadTvSuccess -> {
+                is BaseViewState.ShowLoading -> toggleLoading(true)
+                is BaseViewState.HideLoading -> toggleLoading(false)
+                is BaseViewState.LoadTvSuccess -> {
                     state.data?.let { showData(it) }
                     hideError()
                 }
-                is TvState.Error -> {
+                is BaseViewState.Error -> {
                     toggleLoading(false)
                     showError()
                 }
