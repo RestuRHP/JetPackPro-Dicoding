@@ -1,6 +1,5 @@
 package net.learn.jetpack.data.datastore.discoveryStore
 
-import net.learn.jetpack.data.datastore.discoveryStore.BaseRemoteDataStore
 import net.learn.jetpack.data.model.tv.TvShow
 import net.learn.jetpack.data.network.Api
 import net.learn.jetpack.utils.EspressoIdlingResource

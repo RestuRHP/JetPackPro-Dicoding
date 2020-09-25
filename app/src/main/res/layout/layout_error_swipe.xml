@@ -7,9 +7,9 @@
     android:padding="16dp">
 
     <ImageView
-        android:contentDescription="@string/empty"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:contentDescription="@string/empty"
         android:src="@drawable/icon_swipe" />
 
     <TextView

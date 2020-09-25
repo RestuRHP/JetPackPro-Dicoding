@@ -1,8 +1,8 @@
 package net.learn.jetpack.data.repository
 
-import net.learn.jetpack.data.datastore.favorite.FavoriteRoomDataStore
 import net.learn.jetpack.data.datastore.discoveryStore.BaseRemoteDataStore
 import net.learn.jetpack.data.datastore.discoveryStore.BaseRoomDataStore
+import net.learn.jetpack.data.datastore.favorite.FavoriteRoomDataStore
 
 abstract class BaseRepository<T> {
     protected var localStore: BaseRoomDataStore<T>? = null
