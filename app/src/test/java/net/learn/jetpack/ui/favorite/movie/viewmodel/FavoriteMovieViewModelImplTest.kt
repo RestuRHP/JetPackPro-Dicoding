@@ -38,7 +38,6 @@ class FavoriteMovieViewModelImplTest {
     private lateinit var vm: FavoriteMovieViewModelImpl
     private var observer = mock<Observer<FavoriteMovieState>>()
     private var oserv = mock<Observer<PagedList<Movie>>>()
-    private var movieSet = mutableListOf<Movie>()
 
 
     @Before

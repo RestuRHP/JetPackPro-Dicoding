@@ -2,7 +2,8 @@ package net.learn.jetpack.data.repository
 
 import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.runBlocking
-import net.learn.jetpack.data.datastore.movies.MovieDataStore
+import net.learn.jetpack.data.datastore.discoveryStore.BaseRemoteDataStore
+import net.learn.jetpack.data.datastore.discoveryStore.BaseRoomDataStore
 import net.learn.jetpack.data.model.movies.Movie
 import net.learn.jetpack.utils.Dummy
 import org.junit.Assert.assertEquals
@@ -16,10 +17,10 @@ import org.mockito.MockitoAnnotations
 class MovieRepositoryTest {
 
     @Mock
-    var localStore: MovieDataStore? = null
+    var localStore: BaseRoomDataStore<Movie>? = null
 
     @Mock
-    var remoteStore: MovieDataStore? = null
+    var remoteStore: BaseRemoteDataStore<Movie>? = null
     private var movieRepository: MovieRepository? = null
     private var moviesItem = mutableListOf<Movie>()
 
@@ -35,9 +36,9 @@ class MovieRepositoryTest {
     fun `given repository when get discovery movie should return success`() {
         moviesItem.addAll(Dummy.generateDummyMovies())
         runBlocking {
-            `when`(localStore?.getDiscoveryMovie(1)).thenReturn(moviesItem)
+            `when`(localStore?.getDiscovery(1)).thenReturn(moviesItem)
             val movie = movieRepository?.loadDiscoveryMovie()
-            verify(localStore)?.getDiscoveryMovie(1)
+            verify(localStore)?.getDiscovery(1)
             assertNotNull(movie)
             assertEquals(movie?.get(0)?.title, "The Old Guard")
         }

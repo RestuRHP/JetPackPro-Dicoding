@@ -11,7 +11,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.setMain
 import net.learn.jetpack.data.model.movies.Movie
 import net.learn.jetpack.data.repository.MovieRepository
-import net.learn.jetpack.ui.movies.viewmodel.MovieState
+import net.learn.jetpack.ui.BaseViewState
 import net.learn.jetpack.ui.movies.viewmodel.MovieViewModel
 import net.learn.jetpack.utils.Dummy
 import org.junit.Before
@@ -33,7 +33,7 @@ class MovieViewModelTest {
     @Mock
     private lateinit var movieRepository: MovieRepository
     private lateinit var movieViewModel: MovieViewModel
-    private var observer = mock<Observer<MovieState>>()
+    private var observer = mock<Observer<BaseViewState>>()
     private var movieSet = mutableListOf<Movie>()
 
 
@@ -53,9 +53,9 @@ class MovieViewModelTest {
             movieViewModel.getDiscoveryMovie()
 
             verify(movieRepository, atLeastOnce()).loadDiscoveryMovie()
-            verify(observer).onChanged(MovieState.ShowLoading)
-            verify(observer).onChanged(MovieState.HideLoading)
-            verify(observer).onChanged(MovieState.LoadMovieSuccess(movieSet))
+            verify(observer).onChanged(BaseViewState.ShowLoading)
+            verify(observer).onChanged(BaseViewState.HideLoading)
+            verify(observer).onChanged(BaseViewState.LoadMovieSuccess(movieSet))
 
         }
     }
@@ -67,10 +67,10 @@ class MovieViewModelTest {
             movieViewModel.getDiscoveryMovie()
 
             verify(movieRepository, atLeastOnce()).loadDiscoveryMovie()
-            verify(observer).onChanged(MovieState.LoadMovieSuccess(null))
-            verify(observer).onChanged(MovieState.ShowLoading)
-            verify(observer).onChanged(MovieState.HideLoading)
-            verify(observer).onChanged(MovieState.Error)
+            verify(observer).onChanged(BaseViewState.LoadMovieSuccess(null))
+            verify(observer).onChanged(BaseViewState.ShowLoading)
+            verify(observer).onChanged(BaseViewState.HideLoading)
+            verify(observer).onChanged(BaseViewState.Error)
         }
     }
 
@@ -80,7 +80,7 @@ class MovieViewModelTest {
         runBlocking {
             `when`(movieRepository.getDiscoveryMovieFromDB()).thenReturn(movieSet)
             movieViewModel.listScrolled(1, 1, 2)
-            verify(observer).onChanged(MovieState.LoadMovieSuccess(movieSet))
+            verify(observer).onChanged(BaseViewState.LoadMovieSuccess(movieSet))
         }
     }
 
@@ -90,7 +90,7 @@ class MovieViewModelTest {
             `when`(movieRepository.paginationSets()).thenReturn(null)
             `when`(movieRepository.getDiscoveryMovieFromDB()).thenReturn(null)
             movieViewModel.listScrolled(1, 1, 2)
-            verify(observer, times(2)).onChanged(MovieState.LoadMovieSuccess(null))
+            verify(observer, times(2)).onChanged(BaseViewState.LoadMovieSuccess(null))
         }
     }
 }

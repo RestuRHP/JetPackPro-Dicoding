@@ -1,11 +1,10 @@
 package net.learn.jetpack.data.repository
 
-import net.learn.jetpack.data.datastore.movies.MovieDataStore
 import net.learn.jetpack.data.model.movies.Movie
 
 private const val MOVIE_STARTING_PAGE_INDEX = 1
 
-class MovieRepository private constructor() : BaseRepository<MovieDataStore>() {
+class MovieRepository private constructor() : BaseRepository<Movie>() {
     private var nextRequestPage = MOVIE_STARTING_PAGE_INDEX
     private var isRequestInProgress = false
 
@@ -23,11 +22,11 @@ class MovieRepository private constructor() : BaseRepository<MovieDataStore>() {
         }
     }
 
-    suspend fun saveDiscoveryMovieToDB(page: Int): Boolean {
+    private suspend fun saveDiscoveryMovieToDB(page: Int): Boolean {
         isRequestInProgress = true
         var successful = false
         try {
-            val response = remoteStore?.getDiscoveryMovie(page = page)
+            val response = remoteStore?.getDiscovery(page = page)
             if (response != null) {
                 localStore?.addAll(response)
                 successful = true
@@ -40,7 +39,7 @@ class MovieRepository private constructor() : BaseRepository<MovieDataStore>() {
     }
 
     suspend fun getDiscoveryMovieFromDB(): MutableList<Movie>? {
-        return localStore?.getDiscoveryMovie(nextRequestPage)
+        return localStore?.getDiscovery(nextRequestPage)
     }
 
     suspend fun paginationSets() {

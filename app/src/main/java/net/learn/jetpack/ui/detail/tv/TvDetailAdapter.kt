@@ -39,11 +39,6 @@ class TvDetailAdapter : RecyclerView.Adapter<TvDetailAdapter.ViewHolder>() {
                     )
                     .dontAnimate()
                     .into(img_poster)
-//                itemView.setOnClickListener {
-//                    val intent = Intent(itemView.context, DetailMovieActivity::class.java)
-//                    intent.putExtra(DetailTvActivity.EXTRA_TV, items)
-//                    itemView.context.startActivity(intent)
-//                }
             }
         }
     }

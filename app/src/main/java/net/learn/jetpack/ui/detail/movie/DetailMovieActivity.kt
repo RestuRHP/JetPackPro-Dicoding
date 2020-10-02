@@ -3,7 +3,6 @@ package net.learn.jetpack.ui.detail.movie
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -15,7 +14,7 @@ import net.learn.jetpack.BuildConfig
 import net.learn.jetpack.R
 import net.learn.jetpack.data.model.movies.Movie
 import net.learn.jetpack.data.repository.detail.DetailMovieRepository
-import net.learn.jetpack.ui.detail.movie.viewmodel.DetailMovieState
+import net.learn.jetpack.ui.BaseViewState
 import net.learn.jetpack.ui.detail.movie.viewmodel.DetailMovieViewModel
 import net.learn.jetpack.ui.detail.movie.viewmodel.DetailMovieViewModelFactory
 import net.learn.jetpack.utils.makeGone
@@ -114,38 +113,38 @@ class DetailMovieActivity : AppCompatActivity() {
     }
 
     private fun iniObserver() {
-        vm.state.observe(this, Observer { state ->
+        vm.state.observe(this, { state ->
             when (state) {
-                is DetailMovieState.ShowLoading -> {
+                is BaseViewState.ShowLoading -> {
                     pBDetail.makeVisible()
                 }
-                is DetailMovieState.HideLoading -> {
+                is BaseViewState.HideLoading -> {
                     pBDetail.makeGone()
                 }
-                is DetailMovieState.LoadScreenError -> {
+                is BaseViewState.LoadScreenError -> {
                     pBDetail.makeGone()
                     showError(true)
                 }
-                is DetailMovieState.LoadSimilarMovieSuccess -> {
+                is BaseViewState.LoadSimilarMovieSuccess -> {
                     state.data?.let { showData(it) }
                     showError(false)
                 }
-                is DetailMovieState.IsFavoriteTheater -> {
+                is BaseViewState.IsFavoriteTheater -> {
                     isMovieFavorite = state.status
                     setupFavoriteButton(isMovieFavorite)
                 }
-                is DetailMovieState.SuccessAddFavorite -> {
+                is BaseViewState.SuccessAddFavorite -> {
                     isMovieFavorite = true
                     showSnackBar(detail_activity, getString(R.string.success_add_favorite))
                     setupFavoriteButton(isMovieFavorite)
                 }
-                is DetailMovieState.FailedAddFavorite -> {
+                is BaseViewState.FailedAddFavorite -> {
                     showSnackBar(detail_activity, getString(R.string.failed_add_favorite))
                 }
-                is DetailMovieState.FailedRemoveFavorite -> {
+                is BaseViewState.FailedRemoveFavorite -> {
                     showSnackBar(detail_activity, getString(R.string.failed_remove_favorite))
                 }
-                is DetailMovieState.SuccessRemoveFavorite -> {
+                is BaseViewState.SuccessRemoveFavorite -> {
                     isMovieFavorite = false
                     setupFavoriteButton(isMovieFavorite)
                     showSnackBar(detail_activity, getString(R.string.success_remove_favorite))

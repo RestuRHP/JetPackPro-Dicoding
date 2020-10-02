@@ -6,12 +6,12 @@ import net.learn.jetpack.data.datastore.detail.DetailMovieRemoteStore
 import net.learn.jetpack.data.datastore.detail.DetailMovieRoomStore
 import net.learn.jetpack.data.datastore.detail.DetailTvRemoteStore
 import net.learn.jetpack.data.datastore.detail.DetailTvRoomStore
+import net.learn.jetpack.data.datastore.discoveryStore.MovieRemoteStore
+import net.learn.jetpack.data.datastore.discoveryStore.MovieRoomStore
+import net.learn.jetpack.data.datastore.discoveryStore.TvRemoteStore
+import net.learn.jetpack.data.datastore.discoveryStore.TvRoomStore
 import net.learn.jetpack.data.datastore.favorite.FavoriteMovieRoomStore
 import net.learn.jetpack.data.datastore.favorite.FavoriteTvRoomStore
-import net.learn.jetpack.data.datastore.movies.MovieRemoteStore
-import net.learn.jetpack.data.datastore.movies.MovieRoomStore
-import net.learn.jetpack.data.datastore.tv.TvRemoteStore
-import net.learn.jetpack.data.datastore.tv.TvRoomStore
 import net.learn.jetpack.data.network.Client
 import net.learn.jetpack.data.repository.MovieRepository
 import net.learn.jetpack.data.repository.TvRepository

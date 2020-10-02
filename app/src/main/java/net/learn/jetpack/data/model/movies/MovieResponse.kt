@@ -1,8 +1,7 @@
-package net.learn.submission4.data.response
+package net.learn.jetpack.data.model.movies
 
 
 import com.google.gson.annotations.SerializedName
-import net.learn.jetpack.data.model.movies.Movie
 
 data class MovieResponse(
     @SerializedName("page")

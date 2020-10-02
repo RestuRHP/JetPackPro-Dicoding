@@ -5,17 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import net.learn.jetpack.data.model.tv.TvShow
 import net.learn.jetpack.data.repository.TvRepository
+import net.learn.jetpack.ui.BaseViewState
 
-class MovieViewModel(private val tvRepository: TvRepository) : ViewModel() {
+class TvViewModel(private val tvRepository: TvRepository) : ViewModel() {
 
     companion object {
         private const val VISIBLE_THRESHOLD = 1
     }
 
-    private val _state = MutableLiveData<TvState>()
-    val state: LiveData<TvState>?
+    private val _state = MutableLiveData<BaseViewState>()
+    val state: LiveData<BaseViewState>?
         get() = _state
 
     init {
@@ -23,14 +23,14 @@ class MovieViewModel(private val tvRepository: TvRepository) : ViewModel() {
     }
 
     fun getDiscoveryTv() = viewModelScope.launch {
-        _state.value = TvState.ShowLoading
+        _state.value = BaseViewState.ShowLoading
         try {
             val data = tvRepository.loadDiscoveryTv()
-            _state.value = TvState.HideLoading
-            _state.postValue(TvState.LoadTvSuccess(data))
+            _state.value = BaseViewState.HideLoading
+            _state.postValue(BaseViewState.LoadTvSuccess(data))
         } catch (ex: Exception) {
-            _state.value = TvState.HideLoading
-            _state.value = TvState.Error
+            _state.value = BaseViewState.HideLoading
+            _state.value = BaseViewState.Error
         }
     }
 
@@ -40,17 +40,9 @@ class MovieViewModel(private val tvRepository: TvRepository) : ViewModel() {
                 try {
                     tvRepository.paginationSets()
                     val data = tvRepository.getDiscoveryTvFromDB()
-                    _state.postValue(TvState.LoadTvSuccess(data))
+                    _state.postValue(BaseViewState.LoadTvSuccess(data))
                 } catch (ex: Exception) {
                 }
             }
         }
-}
-
-sealed class TvState {
-    object ShowLoading : TvState()
-    object HideLoading : TvState()
-    object Error : TvState()
-
-    data class LoadTvSuccess(val data: MutableList<TvShow>?) : TvState()
 }

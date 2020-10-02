@@ -40,11 +40,6 @@ class MovieDetailAdapter : RecyclerView.Adapter<MovieDetailAdapter.ViewHolder>()
                     )
                     .dontAnimate()
                     .into(img_poster)
-//                itemView.setOnClickListener {
-//                    val intent = Intent(itemView.context, DetailMovieActivity::class.java)
-//                    intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, items)
-//                    itemView.context.startActivity(intent)
-//                }
             }
         }
     }

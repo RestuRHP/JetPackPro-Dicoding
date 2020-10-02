@@ -11,8 +11,8 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.setMain
 import net.learn.jetpack.data.model.tv.TvShow
 import net.learn.jetpack.data.repository.TvRepository
-import net.learn.jetpack.ui.tv.viewmodel.MovieViewModel
-import net.learn.jetpack.ui.tv.viewmodel.TvState
+import net.learn.jetpack.ui.BaseViewState
+import net.learn.jetpack.ui.tv.viewmodel.TvViewModel
 import net.learn.jetpack.utils.Dummy
 import org.junit.Before
 import org.junit.Rule
@@ -32,14 +32,14 @@ class TvViewModelTest {
 
     @Mock
     private lateinit var tvRepository: TvRepository
-    private lateinit var tvViewModel: MovieViewModel
-    private var observer = mock<Observer<TvState>>()
+    private lateinit var tvViewModel: TvViewModel
+    private var observer = mock<Observer<BaseViewState>>()
     private var tvSet = mutableListOf<TvShow>()
 
     @Before
     fun init() {
         MockitoAnnotations.initMocks(this)
-        tvViewModel = MovieViewModel(tvRepository)
+        tvViewModel = TvViewModel(tvRepository)
         tvViewModel.state?.observeForever(observer)
         Dispatchers.setMain(Dispatchers.Unconfined)
     }
@@ -52,9 +52,9 @@ class TvViewModelTest {
             tvViewModel.getDiscoveryTv()
 
             verify(tvRepository, atLeastOnce()).loadDiscoveryTv()
-            verify(observer).onChanged(TvState.ShowLoading)
-            verify(observer).onChanged(TvState.HideLoading)
-            verify(observer).onChanged(TvState.LoadTvSuccess(tvSet))
+            verify(observer).onChanged(BaseViewState.ShowLoading)
+            verify(observer).onChanged(BaseViewState.HideLoading)
+            verify(observer).onChanged(BaseViewState.LoadTvSuccess(tvSet))
 
         }
     }
@@ -66,10 +66,10 @@ class TvViewModelTest {
             tvViewModel.getDiscoveryTv()
 
             verify(tvRepository, atLeastOnce()).loadDiscoveryTv()
-            verify(observer).onChanged(TvState.LoadTvSuccess(null))
-            verify(observer).onChanged(TvState.ShowLoading)
-            verify(observer).onChanged(TvState.HideLoading)
-            verify(observer).onChanged(TvState.Error)
+            verify(observer).onChanged(BaseViewState.LoadTvSuccess(null))
+            verify(observer).onChanged(BaseViewState.ShowLoading)
+            verify(observer).onChanged(BaseViewState.HideLoading)
+            verify(observer).onChanged(BaseViewState.Error)
         }
     }
 
@@ -80,7 +80,7 @@ class TvViewModelTest {
             `when`(tvRepository.paginationSets()).thenReturn(null)
             `when`(tvRepository.getDiscoveryTvFromDB()).thenReturn(tvSet)
             tvViewModel.listScrolled(1, 1, 2)
-            verify(observer).onChanged(TvState.LoadTvSuccess(tvSet))
+            verify(observer).onChanged(BaseViewState.LoadTvSuccess(tvSet))
         }
     }
 
@@ -90,7 +90,7 @@ class TvViewModelTest {
             `when`(tvRepository.paginationSets()).thenReturn(null)
             `when`(tvRepository.getDiscoveryTvFromDB()).thenReturn(null)
             tvViewModel.listScrolled(1, 1, 2)
-            verify(observer, times(2)).onChanged(TvState.LoadTvSuccess(null))
+            verify(observer, times(2)).onChanged(BaseViewState.LoadTvSuccess(null))
         }
     }
 }

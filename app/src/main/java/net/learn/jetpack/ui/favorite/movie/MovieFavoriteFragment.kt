@@ -23,8 +23,6 @@ class MovieFavoriteFragment : Fragment() {
     private lateinit var vm: FavoriteMovieViewModelImpl
     private lateinit var favoriteAdapter: FavoriteMovieAdapter
 
-    private var favoriteList: ArrayList<Movie>? = arrayListOf()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -3,7 +3,6 @@ package net.learn.jetpack.ui.detail.tv
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -15,7 +14,7 @@ import net.learn.jetpack.BuildConfig
 import net.learn.jetpack.R
 import net.learn.jetpack.data.model.tv.TvShow
 import net.learn.jetpack.data.repository.detail.DetailTvRepository
-import net.learn.jetpack.ui.detail.tv.viewmodel.DetailTvState
+import net.learn.jetpack.ui.BaseViewState
 import net.learn.jetpack.ui.detail.tv.viewmodel.DetailTvViewModel
 import net.learn.jetpack.ui.detail.tv.viewmodel.DetailTvViewModelFactory
 import net.learn.jetpack.utils.makeGone
@@ -114,38 +113,38 @@ class DetailTvActivity : AppCompatActivity() {
     }
 
     private fun iniObserver() {
-        vm.state.observe(this, Observer { state ->
+        vm.state.observe(this, { state ->
             when (state) {
-                is DetailTvState.ShowLoading -> {
+                is BaseViewState.ShowLoading -> {
                     pBDetail.makeVisible()
                 }
-                is DetailTvState.HideLoading -> {
+                is BaseViewState.HideLoading -> {
                     pBDetail.makeGone()
                 }
-                is DetailTvState.LoadScreenError -> {
+                is BaseViewState.LoadScreenError -> {
                     pBDetail.makeGone()
                     showError(true)
                 }
-                is DetailTvState.LoadSimilarSuccess -> {
+                is BaseViewState.LoadSimilarTvSuccess -> {
                     state.data?.let { showData(it) }
                     showError(false)
                 }
-                is DetailTvState.IsFavoriteTheater -> {
+                is BaseViewState.IsFavoriteTheater -> {
                     isTvFavorite = state.status
                     setupFavoriteButton(isTvFavorite)
                 }
-                is DetailTvState.SuccessAddFavorite -> {
+                is BaseViewState.SuccessAddFavorite -> {
                     isTvFavorite = true
                     showSnackBar(detail_activity, getString(R.string.success_add_favorite))
                     setupFavoriteButton(isTvFavorite)
                 }
-                is DetailTvState.FailedAddFavorite -> {
+                is BaseViewState.FailedAddFavorite -> {
                     showSnackBar(detail_activity, getString(R.string.failed_add_favorite))
                 }
-                is DetailTvState.FailedRemoveFavorite -> {
+                is BaseViewState.FailedRemoveFavorite -> {
                     showSnackBar(detail_activity, getString(R.string.failed_remove_favorite))
                 }
-                is DetailTvState.SuccessRemoveFavorite -> {
+                is BaseViewState.SuccessRemoveFavorite -> {
                     isTvFavorite = false
                     setupFavoriteButton(isTvFavorite)
                     showSnackBar(detail_activity, getString(R.string.success_remove_favorite))
